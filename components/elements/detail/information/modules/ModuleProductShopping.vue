@@ -49,13 +49,23 @@
 					<input v-model="quantity" class="form-control" type="text" disabled />
 				</div>
 			</figure>
-			<a class="ps-btn ps-btn--black" href="#" @click.prevent="handleAddToCart">
+			<a
+				v-if="loading === false"
+				class="ps-btn ps-btn--black"
+				href="#"
+				@click.prevent="handleAddToCart"
+			>
 				Agregar al carrito
 			</a>
-			<a class="ps-btn" href="#" @click.prevent="handleAddToCart(true)">
+			<a
+				v-if="loading === false"
+				class="ps-btn"
+				href="#"
+				@click.prevent="handleAddToCart(true)"
+			>
 				Comprar
 			</a>
-			<div class="ps-product__actions ">
+			<div v-if="loading === false" class="ps-product__actions ">
 				<a
 					href="#"
 					title="Add to wishlist"
@@ -64,15 +74,18 @@
 					<i class="icon-heart"></i>
 				</a>
 			</div>
+			<loading v-if="loading === true" />
 		</div>
 	</div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import Loading from "~/components/elements/commons/Loading";
 
 export default {
 	name: "ModuleProductShopping",
+	components: { Loading },
 	props: {
 		product: "",
 	},
@@ -89,6 +102,7 @@ export default {
 			dropdown_size: [],
 			fabric: null,
 			size: null,
+			loading: false,
 		};
 	},
 	mounted() {
@@ -103,6 +117,7 @@ export default {
 
 	methods: {
 		validateItem() {
+			this.loading = true;
 			//validations
 			var continueAddToCart = false;
 			const btn = document.getElementById("size").childNodes[0].children[0]
@@ -119,6 +134,7 @@ export default {
 					//la talla se ha seleccionado y no es un item custom
 					continueAddToCart = true;
 				} else {
+					this.loading = false;
 					continueAddToCart = false;
 					this.$notify({
 						group: "all",
@@ -133,6 +149,8 @@ export default {
 				if (this.fabric !== null && this.size !== null) {
 					continueAddToCart = true;
 				} else if (this.fabric !== null && this.size === null) {
+					this.loading = false;
+
 					continueAddToCart = false;
 					this.$notify({
 						group: "all",
@@ -142,6 +160,8 @@ export default {
 					console.log(btn);
 					btn.style.border = "1px solid red";
 				} else if (this.fabric === null && this.size !== null) {
+					this.loading = false;
+
 					continueAddToCart = false;
 
 					this.$notify({
@@ -152,6 +172,8 @@ export default {
 					console.log(btn2);
 					btn2.style.border = "1px solid red";
 				} else {
+					this.loading = false;
+
 					continueAddToCart = false;
 
 					this.$notify({
@@ -258,6 +280,8 @@ export default {
 
 				if (existItem !== undefined) {
 					if (this.quantity + existItem.quantity > 10) {
+						this.loading = false;
+
 						this.$notify({
 							group: "all",
 							title: "Waring!",
@@ -272,6 +296,7 @@ export default {
 								}.bind(this),
 								500
 							);
+							this.loading = false;
 						}
 					}
 				} else {
@@ -283,6 +308,7 @@ export default {
 							}.bind(this),
 							500
 						);
+						this.loading = false;
 					}
 				}
 			}
@@ -307,6 +333,10 @@ export default {
 				title: "¡Producto agregado!",
 				text: `${this.product.attributes.name} ha sido agregado al carrito!`,
 			});
+			this.size = null;
+			this.fabric = null;
+			this.quantity = 1;
+			this.loading = false;
 		},
 
 		async getCartProduct(products) {
@@ -354,6 +384,10 @@ export default {
 					title: "¡Producto agregado!!",
 					text: `${this.product.attributes.name} ha sido agregado a la lista de deseos!`,
 				});
+				this.size = null;
+				this.fabric = null;
+				this.quantity = 1;
+				this.loading = false;
 			}
 		},
 	},
