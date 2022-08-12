@@ -229,6 +229,25 @@ export default {
 			});
 			console.log("esta son las tallas ===>", sizeResponse);
 		},
+		addNameDetails(sizeId, fabricId) {
+			const findedSize = this.dropdown_size.find((item) => item.id === sizeId);
+			var findedFabric;
+			console.log(fabricId);
+			if (fabricId === null) {
+				findedFabric = {
+					text: "stock",
+				};
+			} else {
+				findedFabric = this.dropdown_fabric.find(
+					(item) => item.id === fabricId
+				);
+			}
+			var responseDetail = {
+				sizeName: findedSize.text,
+				fabricName: findedFabric.text,
+			};
+			return responseDetail;
+		},
 		handleIncreaseQuantity() {
 			this.quantity++;
 		},
@@ -267,12 +286,19 @@ export default {
 
 				let item = {
 					id: this.product.id,
+					fakeId: Math.floor(Math.random() * (999 - 100 + 1) + 100),
+
 					quantity: this.quantity,
 					price: this.product.attributes.price,
 					size: this.size,
+					sizeName: this.addNameDetails(this.size, this.fabric).sizeName,
+					fabricName: this.addNameDetails(this.size, this.fabric).fabricName,
 					custom: this.customItem,
 					fabric: "stock",
+					name: this.product.attributes.name,
+					image: this.product.attributes.images.data[0].attributes.url,
 				};
+
 				if (this.customItem === true && this.fabric !== null) {
 					item.fabric = this.fabric;
 				}
@@ -320,7 +346,7 @@ export default {
 			let queries = [];
 			if (this.cartItems.length > 0) {
 				this.cartItems.forEach((item) => {
-					queries.push(item.id);
+					queries.push(item);
 				});
 			}
 			var respuesta = await this.$store.dispatch(
@@ -342,7 +368,7 @@ export default {
 		async getCartProduct(products) {
 			let listOfIds = [];
 			products.forEach((item) => {
-				listOfIds.push(item.id);
+				listOfIds.push(item);
 			});
 			await this.$store.dispatch("product/getCartProducts", listOfIds);
 		},
@@ -353,7 +379,7 @@ export default {
 			});
 			let queries = [];
 			cartItemsOnCookie.cartItems.forEach((item) => {
-				queries.push(item.id);
+				queries.push(item);
 			});
 			if (this.cartItems.length > 0) {
 				await this.$store.dispatch("product/getCartProducts", queries);
@@ -369,9 +395,12 @@ export default {
 			if (continueAddToWisht === true) {
 				let item = {
 					id: this.product.id,
+					fakeId: Math.floor(Math.random() * (999 - 100 + 1) + 100),
 					size: this.size,
 					custom: this.customItem,
 					fabric: "stock",
+					name: this.product.attributes.name,
+					image: this.product.attributes.images.data[0].attributes.url,
 				};
 				if (this.customItem === true && this.fabric !== null) {
 					item.fabric = this.fabric;

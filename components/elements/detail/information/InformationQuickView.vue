@@ -31,7 +31,7 @@
 				v-if="customItem"
 				id="fabric--container"
 			>
-				<v-container id="fabric" class="el--drop">
+				<v-container id="fabricQuick" class="el--drop">
 					<v-overflow-btn
 						class="my-2"
 						:items="dropdown_fabric"
@@ -46,7 +46,7 @@
 				</v-container>
 			</div>
 			<div class="div--overflow-btn-custom" id="size--container">
-				<v-container id="size" class="el--drop">
+				<v-container id="sizeQuick" class="el--drop">
 					<v-overflow-btn
 						class="my-3"
 						:items="dropdown_size"
@@ -143,11 +143,12 @@ export default {
 			//validations
 			this.loading = true;
 			var continueAddToCart = false;
-			const btn = document.getElementById("size").childNodes[0].children[0]
+			var btn = null;
+			btn = document.getElementById("sizeQuick").childNodes[0].children[0]
 				.children[0];
 			var btn2 = null;
 			if (this.customItem === true) {
-				btn2 = document.getElementById("fabric").childNodes[0].children[0]
+				btn2 = document.getElementById("fabricQuick").childNodes[0].children[0]
 					.children[0];
 				btn2.style.border = "none";
 			}
@@ -165,7 +166,6 @@ export default {
 						title: "¡Hay un error!",
 						text: `Debes seleccionar una talla para continuar!`,
 					});
-					console.log(btn);
 					btn.style.border = "1px solid red";
 				}
 			} else if (this.customItem === true) {
@@ -181,7 +181,6 @@ export default {
 						title: "¡Hay un error!",
 						text: `Debes seleccionar una talla para continuar!`,
 					});
-					console.log(btn);
 					btn.style.border = "1px solid red";
 				} else if (this.fabric === null && this.size !== null) {
 					this.loading = false;
@@ -193,7 +192,6 @@ export default {
 						title: "¡Hay un error!",
 						text: `Debes seleccionar una tela para continuar!`,
 					});
-					console.log(btn2);
 					btn2.style.border = "1px solid red";
 				} else {
 					this.loading = false;
@@ -206,7 +204,6 @@ export default {
 						text: `Debes seleccionar una talla para continuar!`,
 					});
 
-					console.log(btn);
 					btn.style.border = "1px solid red";
 					this.$notify({
 						group: "all",
@@ -214,10 +211,11 @@ export default {
 						text: `Debes seleccionar una tela para continuar!`,
 					});
 
-					console.log(btn2);
 					btn2.style.border = "1px solid red";
 				}
 			}
+			console.log(btn);
+			console.log(btn2);
 
 			return continueAddToCart;
 		},
@@ -252,6 +250,25 @@ export default {
 				};
 			});
 			console.log("esta son las tallas  QUICK ===>", sizeResponse);
+		},
+		addNameDetails(sizeId, fabricId) {
+			const findedSize = this.dropdown_size.find((item) => item.id === sizeId);
+			var findedFabric;
+			console.log(fabricId);
+			if (fabricId === null) {
+				findedFabric = {
+					text: "stock",
+				};
+			} else {
+				findedFabric = this.dropdown_fabric.find(
+					(item) => item.id === fabricId
+				);
+			}
+			var responseDetail = {
+				sizeName: findedSize.text,
+				fabricName: findedFabric.text,
+			};
+			return responseDetail;
 		},
 		handleIncreaseQuantity() {
 			this.quantity++;
@@ -302,14 +319,20 @@ export default {
 						// );
 					}
 				}
+				console.log(this.product);
 
 				let item = {
 					id: this.product.id,
+					fakeId: Math.floor(Math.random() * (999 - 100 + 1) + 100),
 					quantity: this.quantity,
 					price: this.product.attributes.price,
 					size: this.size,
+					sizeName: this.addNameDetails(this.size, this.fabric).sizeName,
+					fabricName: this.addNameDetails(this.size, this.fabric).fabricName,
 					custom: this.customItem,
 					fabric: "stock",
+					name: this.product.attributes.name,
+					image: this.product.attributes.images.data[0].attributes.url,
 				};
 				if (this.customItem === true && this.fabric !== null) {
 					item.fabric = this.fabric;

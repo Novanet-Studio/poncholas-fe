@@ -97,14 +97,16 @@ export const actions = {
 
 	async getCartProducts({ commit }, payload) {
 		let query = "";
+		console.log("este ss el payload", payload);
 		payload.forEach((item) => {
+			console.log("===> el item en store", item);
 			if (query === "") {
-				query = `filters[id]=${item}`;
+				query = `filters[id]=${item.id}`;
 			} else {
-				query = query + `&filters[id]=${item}`;
+				query = query + `&filters[id]=${item.id}`;
 			}
 		});
-		// return console.log(`${baseUrl}/products?populate=*&${query}`)
+		// return console.log(`${baseUrl}/products?populate=*&${query}`);
 		const reponse = await Repository.get(
 			`${baseUrl}/products?populate=*&${query}`
 		)
@@ -112,7 +114,10 @@ export const actions = {
 				commit("setCartProducts", response.data);
 				return response.data;
 			})
-			.catch((error) => ({ error: JSON.stringify(error) }));
+			.catch((error) => {
+				({ error: JSON.stringify(error) });
+				console.log(error);
+			});
 		// return console.log(reponse.data);
 		return reponse.data;
 	},
@@ -140,6 +145,7 @@ export const actions = {
 
 	async getProductById({ commit }, payload) {
 		let query = "";
+		console.log(payload);
 		for (let i = 0; i < payload.length; i++) {
 			if (query === "") {
 				query = `filters[id]=${payload[i]}`;
