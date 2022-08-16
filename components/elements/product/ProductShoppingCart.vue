@@ -9,6 +9,10 @@
 			<nuxt-link :to="`/product/${product.id}`" class="ps-product__title">
 				{{ product.name && product.name }}
 			</nuxt-link>
+			<div class="product--details">
+				<p>{{ product.sizeName }}</p>
+				<p v-if="product.fabric !== 'stock'">{{ product.fabricName }}</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -20,7 +24,16 @@ export default {
 	props: {
 		product: "",
 	},
+	mounted() {
+		console.log(this.product);
+	},
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.ps-product__content {
+	.product--details p {
+		margin: 0px;
+	}
+}
+</style>

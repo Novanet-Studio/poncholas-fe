@@ -28,8 +28,11 @@ export const mutations = {
 				//verify if is it a custom item
 				if (existItem.custom === true) {
 					state.cartItems.push(payload);
-				} else {
+				} else if (existItem.size === payload.size) {
+					//verify if is the same zise
 					existItem.quantity += payload.quantity;
+				} else {
+					state.cartItems.push(payload);
 				}
 			} else {
 				state.cartItems.push(payload);
@@ -41,9 +44,31 @@ export const mutations = {
 		}
 		state.amount = calculateAmount(state.cartItems);
 	},
+	// addItem(state, payload) {
+	// 	if (state.cartItems !== null) {
+	// 		let existItem = state.cartItems.find((item) => item.id === payload.id);
+	// 		if (existItem) {
+	// 			//verify if is it a custom item
+	// 			if (existItem.custom === true) {
+	// 				state.cartItems.push(payload);
+	// 			} else {
+	// 				existItem.quantity += payload.quantity;
+	// 			}
+	// 		} else {
+	// 			state.cartItems.push(payload);
+	// 		}
+	// 		state.total++;
+	// 	} else {
+	// 		state.cartItems.push(payload);
+	// 		state.total = 1;
+	// 	}
+	// 	state.amount = calculateAmount(state.cartItems);
+	// },
 
 	removeItem: (state, payload) => {
-		const index = state.cartItems.findIndex((item) => item.id === payload.id);
+		const index = state.cartItems.findIndex(
+			(item) => item.fakeId === payload.fakeId
+		);
 		state.total = state.total - payload.quantity;
 		state.cartItems.splice(index, 1);
 		state.amount = calculateAmount(state.cartItems);

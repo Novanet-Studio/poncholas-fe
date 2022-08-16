@@ -237,9 +237,6 @@ export default {
 					btn2.style.border = "1px solid red";
 				}
 			}
-			console.log(btn);
-			console.log(btn2);
-
 			return continueAddToCart;
 		},
 		async getCustomDetails() {

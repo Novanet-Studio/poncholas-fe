@@ -84,7 +84,7 @@ export default {
 		},
 		fabrics() {
 			const response = this.$cookies.get("fabrics", { parseJSON: true });
-			if (response.data.length > 0) {
+			if (response.data && response.data.length > 0) {
 				return response.data.map((item) => {
 					return {
 						text: item.attributes.name,
@@ -95,7 +95,7 @@ export default {
 		},
 		sizes() {
 			const response = this.$cookies.get("sizes", { parseJSON: true });
-			if (response.data.length > 0) {
+			if (response.data && response.data.length > 0) {
 				return response.data.map((item) => {
 					return {
 						text: item.attributes.talla,

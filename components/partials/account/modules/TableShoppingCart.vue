@@ -91,7 +91,9 @@ export default {
 			}
 		},
 		handleRemoveProductFromCart(product) {
-			const cartItem = this.cartItems.find((item) => item.id === product.id);
+			const cartItem = this.cartItems.find(
+				(item) => item.fakeId === product.fakeId
+			);
 			this.$store.dispatch("cart/removeProductFromCart", cartItem);
 			this.loadCartProducts();
 			return console.log(this.cartItems);
