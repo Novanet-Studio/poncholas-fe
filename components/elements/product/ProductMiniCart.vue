@@ -75,9 +75,9 @@ export default {
 		},
 	},
 	mounted() {
-		console.log(this.product);
-		console.log(this.cartItems);
-		console.log("los prop nuevis", this.fabrics, this.sizes);
+		// console.log(this.product);
+		// console.log(this.cartItems);
+		// console.log("los prop nuevis", this.fabrics, this.sizes);
 		if (this.product.custom === true) {
 			if (this.fabrics && this.fabrics.length > 0) {
 				const item = this.fabrics.find(

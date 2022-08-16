@@ -94,31 +94,32 @@ export default {
 			const fabricResponse = await this.$store
 				.dispatch("product/getFabricProducts")
 				.then((res) => {
+					this.fabrics = res.map((item) => {
+						return {
+							text: item.attributes.name,
+							id: item.id,
+						};
+					});
 					return res;
 				})
 				.catch((er) => {
 					console.log(er);
 				});
-			this.fabrics = fabricResponse.map((item) => {
-				return {
-					text: item.attributes.name,
-					id: item.id,
-				};
-			});
+
 			const sizeResponse = await this.$store
 				.dispatch("product/getSizeProducts")
 				.then((res) => {
+					this.sizes = res.map((item) => {
+						return {
+							text: item.attributes.talla,
+							id: item.id,
+						};
+					});
 					return res;
 				})
 				.catch((er) => {
 					console.log(er);
 				});
-			this.sizes = sizeResponse.map((item) => {
-				return {
-					text: item.attributes.talla,
-					id: item.id,
-				};
-			});
 		},
 		async loadCartProducts() {
 			// console.log('di click', this.cartProducts)

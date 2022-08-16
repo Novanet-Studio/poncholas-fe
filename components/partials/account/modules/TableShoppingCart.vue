@@ -10,7 +10,22 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="(product, index) in cartProducts.data" :key="product.id">
+			<tr v-for="(product, index) in cartItems" :key="product.faceId">
+				<td data-label="Product">
+					<product-shopping-cart :product="product" />
+				</td>
+				<td data-label="Price" class="price">$ {{ product.price }}</td>
+				<td data-label="Quantity">
+					<quantity :product="product" />
+				</td>
+				<total-quantity :product="product" />
+				<td data-label="Action">
+					<a href="#" @click.prevent="handleRemoveProductFromCart(product)">
+						<i class="icon-cross"></i>
+					</a>
+				</td>
+			</tr>
+			<!-- <tr v-for="(product, index) in cartProducts.data" :key="product.id">
 				<td data-label="Product">
 					<product-shopping-cart :product="product" />
 				</td>
@@ -26,7 +41,7 @@
 						<i class="icon-cross"></i>
 					</a>
 				</td>
-			</tr>
+			</tr> -->
 		</tbody>
 	</table>
 </template>

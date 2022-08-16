@@ -223,32 +223,34 @@ export default {
 			const fabricResponse = await this.$store
 				.dispatch("product/getFabricProducts")
 				.then((res) => {
+					this.dropdown_fabric = res.map((item) => {
+						return {
+							text: item.attributes.name,
+							id: item.id,
+						};
+					});
 					return res;
 				})
 				.catch((er) => {
 					console.log(er);
 				});
-			this.dropdown_fabric = fabricResponse.map((item) => {
-				return {
-					text: item.attributes.name,
-					id: item.id,
-				};
-			});
+
 			console.log("esta son las telas QUICK ===>", this.dropdown_fabric);
 			const sizeResponse = await this.$store
 				.dispatch("product/getSizeProducts")
 				.then((res) => {
+					this.dropdown_size = res.map((item) => {
+						return {
+							text: item.attributes.talla,
+							id: item.id,
+						};
+					});
 					return res;
 				})
 				.catch((er) => {
 					console.log(er);
 				});
-			this.dropdown_size = sizeResponse.map((item) => {
-				return {
-					text: item.attributes.talla,
-					id: item.id,
-				};
-			});
+
 			console.log("esta son las tallas  QUICK ===>", sizeResponse);
 		},
 		addNameDetails(sizeId, fabricId) {

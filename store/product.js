@@ -97,9 +97,9 @@ export const actions = {
 
 	async getCartProducts({ commit }, payload) {
 		let query = "";
-		console.log("este ss el payload", payload);
+		// console.log("este ss el payload", payload);
 		payload.forEach((item) => {
-			console.log("===> el item en store", item);
+			// console.log("===> el item en store", item);
 			if (query === "") {
 				query = `filters[id]=${item.id}`;
 			} else {

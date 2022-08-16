@@ -120,7 +120,7 @@ export default {
 	async mounted() {
 		this.loadCartProducts();
 
-		console.log("====> productos del carrito", this.cartProducts);
+		console.log("====> productos del carrito", this.cartItems);
 	},
 	methods: {
 		async loadCartProducts() {
