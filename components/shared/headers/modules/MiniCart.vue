@@ -66,8 +66,8 @@ export default {
 	components: { Loading, ProductMiniCart },
 	data() {
 		return {
-			fabrics: null,
-			sizes: null,
+			// fabrics: null,
+			// sizes: null,
 		};
 	},
 	computed: {
@@ -82,10 +82,32 @@ export default {
 		baseUrl() {
 			return baseUrl;
 		},
+		fabrics() {
+			const response = this.$cookies.get("fabrics", { parseJSON: true });
+			if (response.data.length > 0) {
+				return response.data.map((item) => {
+					return {
+						text: item.attributes.name,
+						id: item.id,
+					};
+				});
+			}
+		},
+		sizes() {
+			const response = this.$cookies.get("sizes", { parseJSON: true });
+			if (response.data.length > 0) {
+				return response.data.map((item) => {
+					return {
+						text: item.attributes.talla,
+						id: item.id,
+					};
+				});
+			}
+		},
 	},
 	async mounted() {
-		await this.getDetails();
-
+		// await this.getDetails();
+		console.log("esto es el cookie", this.idk);
 		console.log("desde mini cart", this.cartProducts, this.idk, this.cartItems);
 		console.log("desde mini cart detalles", this.fabrics, this.sizes);
 	},

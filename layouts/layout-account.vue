@@ -97,6 +97,8 @@ export default {
 			this.breadCrumb[1].text = firstClick.text;
 		}
 		console.log("click", firstClick);
+		this.$store.dispatch("app/getFabrics");
+		this.$store.dispatch("app/getSizes");
 	},
 	methods: {
 		//text del breadcrumb dinamico

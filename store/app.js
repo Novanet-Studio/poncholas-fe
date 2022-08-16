@@ -1,4 +1,6 @@
 import data from "~/static/data/account-links.json";
+import { baseUrl } from "~/repositories/Repository";
+import Repository, { serializeQuery } from "~/repositories/Repository.js";
 
 export const state = () => ({
 	appDrawer: false,
@@ -46,6 +48,9 @@ export const actions = {
 		const reponse = await Repository.get(`${baseUrl}/fabrics`)
 			.then((response) => {
 				if (response.data.data.length > 0) {
+					const cookieParams = {
+						data: response.data.data,
+					};
 					this.$cookies.set("fabrics", cookieParams, {
 						path: "/",
 						maxAge: 60 * 60 * 24 * 7,
@@ -53,12 +58,14 @@ export const actions = {
 				}
 			})
 			.catch((error) => ({ error: JSON.stringify(error) }));
-		return reponse;
 	},
 	async getSizes({ commit, state }, payload) {
 		const reponse = await Repository.get(`${baseUrl}/sizes`)
 			.then((response) => {
 				if (response.data.data.length > 0) {
+					const cookieParams = {
+						data: response.data.data,
+					};
 					this.$cookies.set("sizes", cookieParams, {
 						path: "/",
 						maxAge: 60 * 60 * 24 * 7,
@@ -66,6 +73,5 @@ export const actions = {
 				}
 			})
 			.catch((error) => ({ error: JSON.stringify(error) }));
-		return reponse;
 	},
 };
