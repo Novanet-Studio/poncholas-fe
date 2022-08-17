@@ -14,7 +14,22 @@
 					</figcaption>
 				</figure>
 				<figure class="ps-block__items">
-					<nuxt-link
+					<div v-for="(product, index) in cartItems" :key="product.id">
+						<nuxt-link
+							:to="`/product/${product.id}`"
+							class="ps-product__title"
+							>{{ product.name }}</nuxt-link
+						>
+						<p>
+							{{ cartItems[index].quantity }} x ${{ product.price.toFixed(2) }}
+						</p>
+						<p><b>Talla: </b>{{ product.sizeName }}</p>
+						<p v-if="product.fabricName !== 'stock'">
+							<b>Tela: </b>{{ product.fabricName }}
+						</p>
+					</div>
+
+					<!-- <nuxt-link
 						v-for="(product, index) in cartProducts.data"
 						:to="`/product/${product.id}`"
 						:key="product.id"
@@ -25,7 +40,7 @@
 						{{ cartItems[index].quantity }} x ${{
 							product.attributes.price.toFixed(2)
 						}}
-					</nuxt-link>
+					</nuxt-link> -->
 				</figure>
 				<figure>
 					<figcaption>
