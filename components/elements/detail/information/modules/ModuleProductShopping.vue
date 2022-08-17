@@ -219,40 +219,6 @@ export default {
 
 			return continueAddToCart;
 		},
-		async getCustomDetails() {
-			const fabricResponse = await this.$store
-				.dispatch("product/getFabricProducts")
-				.then((res) => {
-					this.dropdown_fabric = res.map((item) => {
-						return {
-							text: item.attributes.name,
-							id: item.id,
-						};
-					});
-					return res;
-				})
-				.catch((er) => {
-					console.log(er);
-				});
-
-			console.log("esta son las telas ===>", this.dropdown_fabric);
-			const sizeResponse = await this.$store
-				.dispatch("product/getSizeProducts")
-				.then((res) => {
-					this.dropdown_size = res.map((item) => {
-						return {
-							text: item.attributes.talla,
-							id: item.id,
-						};
-					});
-					return res;
-				})
-				.catch((er) => {
-					console.log(er);
-				});
-
-			console.log("esta son las tallas ===>", sizeResponse);
-		},
 		addNameDetails(sizeId, fabricId) {
 			const findedSize = this.dropdown_size.find((item) => item.id === sizeId);
 			var findedFabric;
@@ -311,7 +277,6 @@ export default {
 				let item = {
 					id: this.product.id,
 					fakeId: Math.floor(Math.random() * (999 - 100 + 1) + 100),
-
 					quantity: this.quantity,
 					price: this.product.attributes.price,
 					size: this.size,
@@ -424,8 +389,13 @@ export default {
 					custom: this.customItem,
 					fabric: "stock",
 					name: this.product.attributes.name,
+					sizeName: this.addNameDetails(this.size, this.fabric).sizeName,
+					fabricName: this.addNameDetails(this.size, this.fabric).fabricName,
+					quantity: this.quantity,
+					price: this.product.attributes.price,
 					image: this.product.attributes.images.data[0].attributes.url,
 				};
+
 				if (this.customItem === true && this.fabric !== null) {
 					item.fabric = this.fabric;
 				}
