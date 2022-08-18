@@ -31,7 +31,7 @@
 				>
 					<i class="icon icon-cross"></i>
 				</a>
-				<product-quickview :product="product" />
+				<product-quickview :product="product" :showAll="showAll" />
 			</div>
 		</v-dialog>
 	</div>
@@ -80,11 +80,18 @@ export default {
 		productPreload: true,
 		isImageLoaded: false,
 		quickviewDialog: false,
+		showAll: true,
 	}),
 	methods: {
 		listenEventFromChildren(payload) {
+			console.log("lo del dial", payload);
 			if (payload.isQuickview === true) {
 				this.quickviewDialog = true;
+			}
+			if (payload.all === true) {
+				this.showAll = true;
+			} else {
+				this.showAll = false;
 			}
 		},
 	},

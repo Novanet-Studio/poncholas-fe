@@ -23,7 +23,7 @@
 				<i class="icon-eye"></i>
 			</a>
 		</li>
-		<!-- <li>
+		<li>
 			<a
 				href="#"
 				data-toggle="tooltip"
@@ -33,7 +33,7 @@
 			>
 				<i class="icon-heart"></i>
 			</a>
-		</li> -->
+		</li>
 	</ul>
 </template>
 
@@ -93,16 +93,11 @@ export default {
 		},
 
 		handleAddItemToWishlist() {
-			let item = {
-				id: this.product.id,
+			const payload = {
+				isQuickview: true,
+				all: false,
 			};
-
-			this.$store.dispatch("wishlist/addItemToWishlist", item);
-			this.$notify({
-				group: "all",
-				title: "¡Producto agregado!",
-				text: `${this.product.attributes.name} ha sido agregado a la lista de deseos!`,
-			});
+			this.$emit("toParent", payload);
 		},
 
 		async getCartProduct(products) {
@@ -122,6 +117,7 @@ export default {
 		handleOpenQuickviewDialog() {
 			const payload = {
 				isQuickview: true,
+				all: true,
 			};
 			this.$emit("toParent", payload);
 		},

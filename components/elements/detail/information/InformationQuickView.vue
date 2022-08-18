@@ -75,23 +75,31 @@
 				</div>
 			</figure>
 			<a
-				v-if="loading === false"
+				v-if="loading === false && showAll === true"
 				class="ps-btn ps-btn--black"
 				href="#"
 				@click.prevent="handleAddToCart"
 			>
 				Agregar al carrito
 			</a>
-			<!-- <a class="ps-btn" href="#" @click.prevent="handleBuyNow(true)">
-				Comprar
-			</a> -->
 			<a
-				v-if="loading === false"
+				v-if="loading === false && showAll === true"
 				class="ps-btn"
 				href="#"
 				@click.prevent="handleAddToCart(true)"
 			>
 				Comprar
+			</a>
+			<a
+				v-if="loading === false"
+				class="wishlist"
+				href="#"
+				data-toggle="tooltip"
+				data-placement="top"
+				title="Add to wishlist"
+				@click.prevent="handleToWishlist"
+			>
+				<i class="icon-heart"></i>
 			</a>
 			<loading v-if="loading === true" />
 		</div>
@@ -111,6 +119,10 @@ export default {
 		product: {
 			type: Object,
 			default: {},
+		},
+		showAll: {
+			type: Boolean,
+			default: true,
 		},
 	},
 	computed: {
@@ -302,20 +314,6 @@ export default {
 			}
 		},
 
-		// handleAddToCart() {
-		// 	let item = {
-		// 		id: this.product.id,
-		// 		quantity: this.quantity,
-		// 		price: this.product.attributes.price,
-		// 	};
-		// 	this.$store.dispatch("cart/addProductToCart", item);
-		// 	// this.getCartProduct(this.cartItems);
-		// 	this.$notify({
-		// 		group: "all",
-		// 		title: "¡Producto agregado!",
-		// 		text: `${this.product.attributes.name} ha sido agregado al carrito!`,
-		// 	});
-		// },
 		handleAddToCart(isBuyNow) {
 			//validations
 			var continueAddToCart = this.validateItem();
@@ -487,6 +485,41 @@ export default {
 				this.$store.commit("cart/setLoading", false);
 			}
 		},
+		handleToWishlist() {
+			this.loading = true;
+			const continueAddToWisht = this.validateItem();
+			if (continueAddToWisht === true) {
+				let item = {
+					id: this.product.id,
+					fakeId: Math.floor(Math.random() * (999 - 100 + 1) + 100),
+					size: this.size,
+					custom: this.customItem,
+					fabric: "stock",
+					name: this.product.attributes.name,
+					sizeName: this.addNameDetails(this.size, this.fabric).sizeName,
+					fabricName: this.addNameDetails(this.size, this.fabric).fabricName,
+					quantity: this.quantity,
+					price: this.product.attributes.price,
+					image: this.product.attributes.images.data[0].attributes.url,
+				};
+
+				if (this.customItem === true && this.fabric !== null) {
+					item.fabric = this.fabric;
+				}
+				// console.log(item);
+
+				this.$store.dispatch("wishlist/addItemToWishlist", item);
+				this.$notify({
+					group: "all",
+					title: "¡Producto agregado!!",
+					text: `${this.product.attributes.name} ha sido agregado a la lista de deseos!`,
+				});
+				this.size = null;
+				this.fabric = null;
+				this.quantity = 1;
+				this.loading = false;
+			}
+		},
 	},
 };
 </script>
@@ -503,6 +536,16 @@ export default {
 	// margin: 0 auto;
 	@media (min-width: 756px) {
 		max-width: 275px !important;
+	}
+}
+.ps-product__shopping {
+	.wishlist {
+		width: 50px;
+		cursor: pointer;
+		i {
+			font-size: 30px;
+			color: red;
+		}
 	}
 }
 </style>
