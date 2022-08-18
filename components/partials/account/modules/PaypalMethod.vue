@@ -45,7 +45,7 @@ export default {
 		},
 	},
 	mounted: async function() {
-		await this.getProducts(this.cart.cartItems);
+		// await this.getProducts(this.cart.cartItems);
 		this.invoice_id = this.getInvoiceId();
 		const clientId = process.env.PAYPAL_CLIENT_ID;
 		console.log("====> ", clientId);
@@ -129,17 +129,17 @@ export default {
 				.render(this.$refs.paypal);
 		},
 		async createInvoice(payment, products) {
-			var productName = this.productsCart;
-			var setItems = [];
-			products.map(async function(products) {
-				var finded = productName.find((item) => item.id === products.id);
-				if (finded) {
-					setItems.push({
-						id_product: products.id,
-						quantity: products.quantity,
-						name_product: finded.attributes.name,
-					});
+			var setItems = products.map((prod) => {
+				var data = {
+					quantity: prod.quantity,
+					size: prod.size,
+					fabric: prod.fabric,
+					product: prod.id,
+				};
+				if (prod.fabric === "stock") {
+					data.fabric = 1;
 				}
+				return data;
 			});
 
 			console.log("====> estp", setItems);
@@ -241,47 +241,26 @@ export default {
 					payment.purchase_units[0].amount.value
 				)} USD`;
 				let query = "";
-				// products.forEach((item) => {
-				// var finded = this.productMail.find(
-				//     (product) => product.id === item.id
-				// );
-				// if (finded) {
-				//     productos.push({
-				//     quantity: item.quantity,
-				//     name: finded.attributes.name,
-				//     amount: item.price,
-				//     description: finded.attributes.description,
-				//     });
-				// }
-				// });
-				for (let item of products) {
-					var finded = this.productMail.find(
-						(product) => product.id === item.id
-					);
-					if (finded) {
-						console.log(finded);
-						productos.push({
-							quantity: item.quantity,
-							name: finded.attributes.name,
-							amount: item.price,
-							description: finded.attributes.description,
-						});
-						var payload = {
-							quantity: item.quantity,
-							name: finded.attributes.name,
-							price: item.price,
-						};
-						var queryResponse = await this.$store
-							.dispatch("checkout/productsMailQuery", payload)
-							.then((res) => {
-								return res;
-							});
 
-						if (query === "") {
-							query = queryResponse;
-						} else {
-							query = query + queryResponse;
-						}
+				for (let item of products) {
+					var payload = {
+						quantity: item.quantity,
+						name: item.name,
+						price: item.price,
+						fabric: item.fabricName,
+						size: item.sizeName,
+						custom: item.custom,
+					};
+					var queryResponse = await this.$store
+						.dispatch("checkout/productsMailQuery", payload)
+						.then((res) => {
+							return res;
+						});
+
+					if (query === "") {
+						query = queryResponse;
+					} else {
+						query = query + queryResponse;
 					}
 				}
 
