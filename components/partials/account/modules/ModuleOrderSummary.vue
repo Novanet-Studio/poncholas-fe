@@ -14,7 +14,7 @@
 					</figcaption>
 				</figure>
 				<figure class="ps-block__items">
-					<div v-for="(product, index) in cartItems" :key="product.id">
+					<div v-for="(product, index) in cartItems" :key="product.fakeId">
 						<nuxt-link
 							:to="`/product/${product.id}`"
 							class="ps-product__title"

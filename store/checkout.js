@@ -39,10 +39,14 @@ export const actions = {
 		});
 	},
 	async invoiceInfo({ commit }, payload) {
-		const id = payload;
-		const response = await Repository.get(`${baseUrl}/invoices/${id}`)
+		const id = payload.id;
+		const userId = payload.user_id;
+		const response = await Repository.get(
+			`${baseUrl}/invoices/${id}?populate[products][populate]=%2A&populate[payment_info][populate]=%2A&populate=*&filters[user_id]=${userId}`
+		)
 			.then((response) => {
-				return response.data;
+				console.log("el response desde store", response);
+				return response.data.data;
 			})
 			.catch((error) => ({ error: JSON.stringify(error) }));
 
@@ -51,9 +55,10 @@ export const actions = {
 	async getAllInvoices({ commit }, payload) {
 		const userId = payload;
 		const response = await Repository.get(
-			`${baseUrl}/invoices?populate=*&filters[user_id]=${userId}`
+			`${baseUrl}/invoices?populate[products][populate]=%2A&filters[user_id]=${userId}`
 		)
 			.then((response) => {
+				console.log("desde el store -====> invoice", response);
 				return response.data;
 			})
 			.catch((error) => ({ error: JSON.stringify(error) }));
@@ -64,7 +69,7 @@ export const actions = {
 		const userId = payload.userId;
 		const page = payload.page;
 		const response = await Repository.get(
-			`${baseUrl}/invoices?populate=*&filters[user_id]=${userId}&pagination[page]=${page}&pagination[pageSize]=10`
+			`${baseUrl}/invoices?populate[products][populate]=%2A&populate[payment_info][populate]=%2A&populate=*&filters[user_id]=${userId}&pagination[page]=${page}&pagination[pageSize]=10`
 		)
 			.then((response) => {
 				return response;
