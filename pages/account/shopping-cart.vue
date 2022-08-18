@@ -62,12 +62,18 @@ export default {
 			const cartItemsOnCookie = this.$cookies.get("cart", {
 				parseJSON: true,
 			});
-			let queries = [];
-			cartItemsOnCookie.cartItems.forEach((item) => {
-				queries.push(item);
-			});
-			if (queries.length > 0) {
-				await this.$store.dispatch("product/getCartProducts", queries);
+			if (
+				cartItemsOnCookie &&
+				cartItemsOnCookie.cartItems &&
+				cartItemsOnCookie.cartItems.length
+			) {
+				let queries = [];
+				cartItemsOnCookie.cartItems.forEach((item) => {
+					queries.push(item);
+				});
+				if (queries.length > 0) {
+					await this.$store.dispatch("product/getCartProducts", queries);
+				}
 			}
 		},
 	},

@@ -179,7 +179,7 @@ export default {
 						title: "¡Hay un error!",
 						text: `Debes seleccionar una talla para continuar!`,
 					});
-					console.log(btn);
+					// console.log(btn);
 					btn.style.border = "1px solid red";
 				} else if (this.fabric === null && this.size !== null) {
 					this.loading = false;
@@ -191,7 +191,7 @@ export default {
 						title: "¡Hay un error!",
 						text: `Debes seleccionar una tela para continuar!`,
 					});
-					console.log(btn2);
+					// console.log(btn2);
 					btn2.style.border = "1px solid red";
 				} else {
 					this.loading = false;
@@ -204,7 +204,7 @@ export default {
 						text: `Debes seleccionar una talla para continuar!`,
 					});
 
-					console.log(btn);
+					// console.log(btn);
 					btn.style.border = "1px solid red";
 					this.$notify({
 						group: "all",
@@ -212,7 +212,7 @@ export default {
 						text: `Debes seleccionar una tela para continuar!`,
 					});
 
-					console.log(btn2);
+					// console.log(btn2);
 					btn2.style.border = "1px solid red";
 				}
 			}
@@ -222,7 +222,7 @@ export default {
 		addNameDetails(sizeId, fabricId) {
 			const findedSize = this.dropdown_size.find((item) => item.id === sizeId);
 			var findedFabric;
-			console.log(fabricId);
+			// console.log(fabricId);
 			if (fabricId === null) {
 				findedFabric = {
 					text: "stock",
@@ -264,7 +264,7 @@ export default {
 							(item) => item.id === this.product.id
 						);
 						// verificar que este producto no sea custom
-						console.log("el customItem ===>", findedItem);
+						// console.log("el customItem ===>", findedItem);
 						if (findedItem && findedItem.customItem === false) {
 							existItem = findedItem;
 						}
@@ -291,7 +291,7 @@ export default {
 				if (this.customItem === true && this.fabric !== null) {
 					item.fabric = this.fabric;
 				}
-				console.log(item);
+				// console.log(item);
 
 				if (existItem !== undefined) {
 					if (this.quantity + existItem.quantity > 10) {
@@ -399,7 +399,7 @@ export default {
 				if (this.customItem === true && this.fabric !== null) {
 					item.fabric = this.fabric;
 				}
-				console.log(item);
+				// console.log(item);
 
 				this.$store.dispatch("wishlist/addItemToWishlist", item);
 				this.$notify({

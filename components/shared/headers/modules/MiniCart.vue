@@ -107,9 +107,9 @@ export default {
 	},
 	async mounted() {
 		// await this.getDetails();
-		console.log("esto es el cookie", this.idk);
-		console.log("desde mini cart", this.cartProducts, this.idk, this.cartItems);
-		console.log("desde mini cart detalles", this.fabrics, this.sizes);
+		// console.log("esto es el cookie", this.idk);
+		// console.log("desde mini cart", this.cartProducts, this.idk, this.cartItems);
+		// console.log("desde mini cart detalles", this.fabrics, this.sizes);
 	},
 	methods: {
 		async getDetails() {

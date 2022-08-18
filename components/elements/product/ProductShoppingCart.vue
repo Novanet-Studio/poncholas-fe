@@ -25,7 +25,7 @@ export default {
 		product: "",
 	},
 	mounted() {
-		console.log(this.product);
+		// console.log(this.product);
 	},
 };
 </script>

@@ -55,7 +55,7 @@ export default {
 		},
 	},
 	mounted() {
-		console.log(this.product);
+		// console.log(this.product);
 		if (this.product.custom === true) {
 			this.customItem = true;
 		}
@@ -67,7 +67,7 @@ export default {
 				this.product
 			);
 
-			console.log(updateQuantity);
+			// console.log(updateQuantity);
 		},
 
 		async handleDescreaseQuantity() {
@@ -76,7 +76,7 @@ export default {
 				this.product
 			);
 
-			console.log(updateQuantity);
+			// console.log(updateQuantity);
 		},
 	},
 };

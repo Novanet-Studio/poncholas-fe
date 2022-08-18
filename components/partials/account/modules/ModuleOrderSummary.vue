@@ -74,11 +74,11 @@ export default {
 	},
 	mounted() {
 		this.loadCartProducts();
-		console.log("los item en el summary", this.cartItems);
+		// console.log("los item en el summary", this.cartItems);
 	},
 	methods: {
 		async loadCartProducts() {
-			console.log("di click");
+			// console.log("di click");
 			const cookieCart = this.$cookies.get("cart", { parseJSON: true });
 			let queries = [];
 			cookieCart.cartItems.forEach((item) => {
@@ -97,7 +97,7 @@ export default {
 				this.$store.commit("product/setCartProducts", null);
 			}
 
-			console.log("item del cart full", this.cartProducts);
+			// console.log("item del cart full", this.cartProducts);
 		},
 	},
 };

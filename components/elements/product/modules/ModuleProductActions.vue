@@ -87,9 +87,9 @@ export default {
 			});
 			// const handler = new HandlerActions()
 			// handler.handleAddToCart(this.product)
-			console.log(this.$cookies.get("cart"));
-			console.log(this.cartItems);
-			console.log(respuesta, "desdeaqui");
+			// console.log(this.$cookies.get("cart"));
+			// console.log(this.cartItems);
+			// console.log(respuesta, "desdeaqui");
 		},
 
 		handleAddItemToWishlist() {

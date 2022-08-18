@@ -72,10 +72,10 @@ export default {
 		const card = await payments.card();
 		await card.attach("#card-container");
 		this.card = card;
-		console.log(this.cart);
-		console.log(this.cookie);
+		// console.log(this.cart);
+		// console.log(this.cookie);
 		// this.invoicesTest(this.cart.cartItems)
-		console.log("la cookie", this.cookie);
+		// console.log("la cookie", this.cookie);
 	},
 	methods: {
 		async handlePayment() {
@@ -118,9 +118,9 @@ export default {
 							.catch((error) => {
 								console.log(error);
 							});
-						console.log("hay billing? ", billingResponse);
+						// console.log("hay billing? ", billingResponse);
 						if (billingResponse !== false) {
-							console.log(billingResponse);
+							// console.log(billingResponse);
 							payment.billingAddress = billingResponse;
 						} else {
 							payment.billingAddress = {
@@ -130,7 +130,7 @@ export default {
 								country: "VE",
 							};
 						}
-						console.log(payment);
+						// console.log(payment);
 						this.createPayment(payment);
 					}
 				})
@@ -155,7 +155,7 @@ export default {
 						const itemInvoices = this.cart.cartItems;
 						await this.createInvoice(paymentInfo, itemInvoices).then(
 							(respuesta) => {
-								console.log("la respueata del invoice ==>", respuesta);
+								// console.log("la respueata del invoice ==>", respuesta);
 								if (respuesta.status === 200 && respuesta.statusText == "OK") {
 									//       // alert('INVOICE CREADO')
 									this.$notify({
@@ -167,9 +167,9 @@ export default {
 								}
 							}
 						);
-						console.log(paymentInfo);
+						// console.log(paymentInfo);
 					}
-					console.log(squareResponse);
+					// console.log(squareResponse);
 				})
 				.catch((error) => {
 					this.loading = false;
@@ -193,7 +193,7 @@ export default {
 				return data;
 			});
 
-			console.log("====> estp", setItems);
+			// console.log("====> estp", setItems);
 			payment.shippingAddress.phone = this.cookie.phone;
 			payment.shippingAddress.home = this.cookie.home;
 
@@ -244,7 +244,7 @@ export default {
 				products.forEach((element) => {
 					metaData.push(element.id);
 				});
-				console.log("====> meta", metaData);
+				// console.log("====> meta", metaData);
 				var respuesta = await this.$store
 					.dispatch("product/getProductById", metaData)
 					.then((res) => {
@@ -256,12 +256,12 @@ export default {
 					});
 				this.productMail = respuesta;
 				this.productsCart = respuesta;
-				return console.log(
-					"====> el repo",
-					respuesta,
-					this.productMail,
-					this.productsCart
-				);
+				// return console.log(
+				// 	"====> el repo",
+				// 	respuesta,
+				// 	this.productMail,
+				// 	this.productsCart
+				// );
 			} catch (error) {
 				console.log(error);
 			}
@@ -296,7 +296,7 @@ export default {
 					}
 				}
 
-				console.log("===> pagos", payment);
+				// console.log("===> pagos", payment);
 				const dataSgmail = {
 					apikey: process.env.SENDGRID_API_KEY,
 					senderMail: process.env.SENDGRID_SENDER_MAIL,
@@ -328,7 +328,7 @@ export default {
 						}
 					)
 					.then(async (res) => {
-						console.log("lo de axios ===>", res);
+						// console.log("lo de axios ===>", res);
 						if (res.stat && res.stat === 200) {
 							// return console.log("la res del mail ===>", res);
 							await this.sendMerchantMail(merchant);
@@ -354,7 +354,7 @@ export default {
 				.then((res) => {
 					var response = false;
 					if (res.length > 0) {
-						console.log("el billing ===>", res);
+						// console.log("el billing ===>", res);
 						const address = res[0].attributes.address;
 						response = {
 							addressLine1: address.direccion,
@@ -374,14 +374,14 @@ export default {
 		},
 		async sendMerchantMail(data) {
 			try {
-				console.log(data);
+				// console.log(data);
 				this.$axios
 					.$post(
 						"https://us-central1-poncholas-1a51a.cloudfunctions.net/sendMerchant",
 						data
 					)
 					.then(async (res) => {
-						console.log("lo de axios DOS ===>", res);
+						// console.log("lo de axios DOS ===>", res);
 						if (res.stat && res.stat === 200) {
 							this.loading = false;
 

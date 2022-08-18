@@ -77,7 +77,7 @@ export default {
 			this.$store.commit("app/setAppDrawer", false);
 		},
 		async loadCartProducts() {
-			console.log("di click");
+			// console.log("di click");
 			const cookieCart = this.$cookies.get("cart", { parseJSON: true });
 			let queries = [];
 			cookieCart.cartItems.forEach((item) => {

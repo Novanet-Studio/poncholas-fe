@@ -90,7 +90,7 @@ export default {
 			const respuesta = await this.$store
 				.dispatch("checkout/getAllInvoices", this.user.id)
 				.then((ress) => {
-					console.log("===? los invoices", ress.data);
+					// console.log("===? los invoices", ress.data);
 					if (ress.data.length > 0) {
 						var res = ress.data;
 						this.invoiceExist = true;
@@ -111,7 +111,7 @@ export default {
 						this.invoiceExist = false;
 					}
 				});
-			console.log("===> todo creo", this.tableInvoices);
+			// console.log("===> todo creo", this.tableInvoices);
 		},
 		async getPaymentsPaginated() {
 			var payload = {
@@ -121,7 +121,7 @@ export default {
 			const respuesta = await this.$store
 				.dispatch("checkout/getAllInvoicesPaginator", payload)
 				.then((ress) => {
-					console.log("===? los invoices", ress.data);
+					// console.log("===? los invoices", ress.data);
 					if (ress.data.data.length > 0) {
 						var res = ress.data.data;
 						this.invoiceExist = true;
@@ -156,10 +156,10 @@ export default {
 						this.invoiceExist = false;
 					}
 				});
-			console.log("===> todo creo", this.tableInvoices);
+			// console.log("===> todo creo", this.tableInvoices);
 		},
 		goToInvoice(idInvUser, invoice) {
-			console.log(idInvUser, invoice);
+			// console.log(idInvUser, invoice);
 			const cookieParams = {
 				invoice: invoice,
 			};

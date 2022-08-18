@@ -231,13 +231,13 @@ export default {
 	},
 	mounted() {
 		this.loadWishlist();
-		console.log(this.wishlistProducts);
+		// console.log(this.wishlistProducts);
 	},
 	methods: {
 		addNameDetails(sizeId, fabricId) {
 			const findedSize = this.dropdown_size.find((item) => item.id === sizeId);
 			var findedFabric;
-			console.log(fabricId);
+			// console.log(fabricId);
 			if (fabricId === null || fabricId === "stock") {
 				findedFabric = {
 					text: "stock",
@@ -344,7 +344,7 @@ export default {
 		},
 		async handleAddToCart(buyItNow, currentProduct) {
 			var product = currentProduct;
-			console.log(this.fabric, this.size);
+			// console.log(this.fabric, this.size);
 			if (product.custom === true) {
 				this.customItem = true;
 			} else {
@@ -352,7 +352,7 @@ export default {
 			}
 			var continueAddToCart = this.validateItem();
 			if (continueAddToCart === true) {
-				console.log("el producto", product, continueAddToCart);
+				// console.log("el producto", product, continueAddToCart);
 				const cartItemsOnCookie = this.$cookies.get("cart", {
 					parseJSON: true,
 				});
@@ -364,7 +364,7 @@ export default {
 							(item) => item.id === product.id
 						);
 						// verificar que este producto no sea custom
-						console.log("el customItem ===>", findedItem);
+						// console.log("el customItem ===>", findedItem);
 						if (findedItem && findedItem.customItem === false) {
 							existItem = findedItem;
 						}
@@ -388,14 +388,14 @@ export default {
 					};
 					this.$store.dispatch("wishlist/updateItemFromWishlist", data);
 				}
-				console.log(
-					this.quantity,
-					product.quantity,
-					this.fabric,
-					product.fabric,
-					this.size,
-					product.size
-				);
+				// console.log(
+				// 	this.quantity,
+				// 	product.quantity,
+				// 	this.fabric,
+				// 	product.fabric,
+				// 	this.size,
+				// 	product.size
+				// );
 				if (existItem !== undefined) {
 					if (this.quantity + existItem.quantity > 10) {
 						this.$notify({
@@ -441,7 +441,7 @@ export default {
 				}
 			}
 
-			console.log("ya listo", product);
+			// console.log("ya listo", product);
 			// this.$store.dispatch("cart/addProductToCart", item);
 			// // alert('se ha agregado el item al carrito')
 			// this.$notify({
@@ -466,7 +466,7 @@ export default {
 				parseJSON: true,
 			});
 
-			console.log(wishlistItemsOnCookie);
+			// console.log(wishlistItemsOnCookie);
 		},
 		handleIncreaseQuantity(product) {
 			this.quantity++;

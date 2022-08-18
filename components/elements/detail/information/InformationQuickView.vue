@@ -158,7 +158,7 @@ export default {
 		) {
 			this.customItem = true;
 		}
-		console.log(this.dropdown_fabric);
+		// console.log(this.dropdown_fabric);
 		// this.getCustomDetails();
 	},
 	methods: {
@@ -271,12 +271,12 @@ export default {
 					console.log(er);
 				});
 
-			console.log("esta son las tallas  QUICK ===>", sizeResponse);
+			// console.log("esta son las tallas  QUICK ===>", sizeResponse);
 		},
 		addNameDetails(sizeId, fabricId) {
 			const findedSize = this.dropdown_size.find((item) => item.id === sizeId);
 			var findedFabric;
-			console.log(fabricId);
+			// console.log(fabricId);
 			if (fabricId === null) {
 				findedFabric = {
 					text: "stock",
@@ -332,7 +332,7 @@ export default {
 							(item) => item.id === this.product.id
 						);
 						// verificar que este producto no sea custom
-						console.log("el customItem ===>", findedItem);
+						// console.log("el customItem ===>", findedItem);
 						if (findedItem && findedItem.customItem === false) {
 							existItem = findedItem;
 						}
@@ -341,7 +341,7 @@ export default {
 						// );
 					}
 				}
-				console.log(this.product);
+				// console.log(this.product);
 
 				let item = {
 					id: this.product.id,
@@ -359,7 +359,7 @@ export default {
 				if (this.customItem === true && this.fabric !== null) {
 					item.fabric = this.fabric;
 				}
-				console.log(item);
+				// console.log(item);
 
 				if (existItem !== undefined) {
 					if (this.quantity + existItem.quantity > 10) {

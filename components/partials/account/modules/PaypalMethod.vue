@@ -48,16 +48,16 @@ export default {
 		// await this.getProducts(this.cart.cartItems);
 		this.invoice_id = this.getInvoiceId();
 		const clientId = process.env.PAYPAL_CLIENT_ID;
-		console.log("====> ", clientId);
+		// console.log("====> ", clientId);
 		const script = document.createElement("script");
 		script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}&disable-funding=credit,card`;
 		script.addEventListener("load", this.setLoaded);
 		document.body.appendChild(script);
-		console.log("el invoice id", this.invoice_id);
+		// console.log("el invoice id", this.invoice_id);
 	},
 	methods: {
 		setLoaded() {
-			console.log("===>", this.cart, this.cookie, this.customerId);
+			// console.log("===>", this.cart, this.cookie, this.customerId);
 			window.paypal
 				.Buttons({
 					createOrder: (data, actions) => {
@@ -90,7 +90,7 @@ export default {
 							contenedor.innerHTML =
 								"<h4 class='text-center'>Por favor espere!</h4>";
 
-							console.log("dentro del then ====> ", res);
+							// console.log("dentro del then ====> ", res);
 							if (res.status === "COMPLETED") {
 								const itemInvoices = this.cart.cartItems;
 								this.$notify({
@@ -100,7 +100,7 @@ export default {
 								});
 								await this.createInvoice(res, itemInvoices).then(
 									(respuesta) => {
-										console.log("===> respuesta del invoice", respuesta);
+										// console.log("===> respuesta del invoice", respuesta);
 										if (
 											respuesta.status === 200 &&
 											respuesta.statusText == "OK"
@@ -142,7 +142,7 @@ export default {
 				return data;
 			});
 
-			console.log("====> estp", setItems);
+			// console.log("====> estp", setItems);
 			var setAddress = {
 				phone: this.cookie.phone,
 				home: this.cookie.home,
@@ -183,7 +183,7 @@ export default {
 			};
 
 			// return payload
-			console.log("lo que se envia al invoice", data);
+			// console.log("lo que se envia al invoice", data);
 			const res = await this.$store
 				.dispatch("checkout/createInvoice", payload)
 				.then((res) => {
@@ -201,7 +201,7 @@ export default {
 				products.forEach((element) => {
 					metaData.push(element.id);
 				});
-				console.log("====> meta", metaData);
+				// console.log("====> meta", metaData);
 				var respuesta = await this.$store
 					.dispatch("product/getProductById", metaData)
 					.then((res) => {
@@ -213,12 +213,12 @@ export default {
 					});
 				this.productMail = respuesta;
 				this.productsCart = respuesta;
-				return console.log(
-					"====> el repo",
-					respuesta,
-					this.productMail,
-					this.productsCart
-				);
+				// return console.log(
+				// 	"====> el repo",
+				// 	respuesta,
+				// 	this.productMail,
+				// 	this.productsCart
+				// );
 			} catch (error) {
 				console.log(error);
 			}
@@ -264,7 +264,7 @@ export default {
 					}
 				}
 
-				console.log("===> pagos", payment);
+				// console.log("===> pagos", payment);
 				const dataSgmail = {
 					apikey: process.env.SENDGRID_API_KEY,
 					senderMail: process.env.SENDGRID_SENDER_MAIL,
@@ -296,7 +296,7 @@ export default {
 						}
 					)
 					.then(async (res) => {
-						console.log("lo de axios ===>", res);
+						// console.log("lo de axios ===>", res);
 						if (res.stat && res.stat === 200) {
 							await this.sendMerchantMail(merchant);
 						}
@@ -308,14 +308,14 @@ export default {
 		},
 		async sendMerchantMail(data) {
 			try {
-				console.log(data);
+				// console.log(data);
 				this.$axios
 					.$post(
 						"https://us-central1-poncholas-1a51a.cloudfunctions.net/sendMerchant",
 						data
 					)
 					.then(async (res) => {
-						console.log("lo de axios DOS ===>", res);
+						// console.log("lo de axios DOS ===>", res);
 						if (res.stat && res.stat === 200) {
 							this.$notify({
 								group: "all",

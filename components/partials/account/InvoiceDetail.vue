@@ -4,7 +4,7 @@
 			<div id="pdf-content">
 				<div class="ps-section__header">
 					<h3>
-						Factura #{{ invoiceDetailed.attributes.id }} -
+						Factura #{{ invoiceDetailed.id }} -
 						<strong>Successful delivery PPU</strong>
 					</h3>
 				</div>

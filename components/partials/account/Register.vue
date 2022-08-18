@@ -159,7 +159,7 @@ export default {
 						datos.push(customerinfo);
 						datos.push("success");
 					}
-					console.log("===> respuesta square", squareResponse.customer);
+					// console.log("===> respuesta square", squareResponse.customer);
 					// return datos
 				})
 				.catch((error) => {
@@ -202,7 +202,7 @@ export default {
 				// alert(respuesta.alert);
 			}
 
-			console.log(respuesta);
+			// console.log(respuesta);
 		},
 	},
 };

@@ -120,30 +120,36 @@ export default {
 	async mounted() {
 		this.loadCartProducts();
 
-		console.log("====> productos del carrito", this.cartItems);
+		// console.log("====> productos del carrito", this.cartItems);
 	},
 	methods: {
 		async loadCartProducts() {
 			// console.log('di click')
 			const cookieCart = this.$cookies.get("cart", { parseJSON: true });
 			let queries = [];
-			cookieCart.cartItems.forEach((item) => {
-				queries.push(item);
-			});
+			if (
+				cookieCart &&
+				cookieCart.cartItems &&
+				cookieCart.cartItems.length > 0
+			) {
+				cookieCart.cartItems.forEach((item) => {
+					queries.push(item);
+				});
 
-			// return console.log(queries)
-			if (this.cartItems.length > 0) {
-				const response = await this.$store.dispatch(
-					"product/getCartProducts",
-					queries
-				);
-				//  console.log(response)
-				if (response) {
-					this.$store.commit("cart/setLoading", false);
-					// this.cartProducts = response;
+				// return console.log(queries)
+				if (this.cartItems.length > 0) {
+					const response = await this.$store.dispatch(
+						"product/getCartProducts",
+						queries
+					);
+					//  console.log(response)
+					if (response) {
+						this.$store.commit("cart/setLoading", false);
+						// this.cartProducts = response;
+					}
+				} else {
+					this.$store.commit("product/setCartProducts", null);
 				}
-			} else {
-				this.$store.commit("product/setCartProducts", null);
 			}
 		},
 	},

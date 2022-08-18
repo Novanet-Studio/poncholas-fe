@@ -226,7 +226,7 @@ export default {
 				products.forEach((element) => {
 					metaData.push(element.id);
 				});
-				console.log("====> meta", metaData);
+				// console.log("====> meta", metaData);
 				var respuesta = await this.$store
 					.dispatch("product/getProductById", metaData)
 					.then((res) => {
@@ -238,12 +238,12 @@ export default {
 					});
 				this.productMail = respuesta;
 				this.productsCart = respuesta;
-				return console.log(
-					"====> el repo",
-					respuesta,
-					this.productMail,
-					this.productsCart
-				);
+				// return console.log(
+				// 	"====> el repo",
+				// 	respuesta,
+				// 	this.productMail,
+				// 	this.productsCart
+				// );
 			} catch (error) {
 				console.log(error);
 			}
@@ -262,15 +262,15 @@ export default {
 						monto: this.amountPayed,
 						fecha: this.date,
 					};
-					console.log(
-						"data que se debe setar al invoice===>",
-						dataPayment,
-						this.cart
-					);
+					// console.log(
+					// 	"data que se debe setar al invoice===>",
+					// 	dataPayment,
+					// 	this.cart
+					// );
 					//** PRIMERO ENVIAR A STRAPI*/
 					await this.createInvoice(dataPayment, this.cart.cartItems).then(
 						async (respuesta) => {
-							console.log("la respuesta del invoice", respuesta);
+							// console.log("la respuesta del invoice", respuesta);
 							if (respuesta.status === 200 && respuesta.statusText == "OK") {
 								this.$notify({
 									group: "all",
@@ -305,7 +305,7 @@ export default {
 				return data;
 			});
 
-			console.log("====> estp", setItems);
+			// console.log("====> estp", setItems);
 			var setAddress = {
 				phone: this.cookie.phone,
 				home: this.cookie.home,
@@ -346,7 +346,7 @@ export default {
 			};
 
 			//return payload
-			console.log("lo que se envia al invoice", data);
+			// console.log("lo que se envia al invoice", data);
 			const res = await this.$store
 				.dispatch("checkout/createInvoice", payload)
 				.then((res) => {
@@ -387,7 +387,7 @@ export default {
 					}
 				}
 
-				console.log("===> pagos", payment);
+				// console.log("===> pagos", payment);
 				const dataSgmail = {
 					apikey: process.env.SENDGRID_API_KEY,
 					senderMail: process.env.SENDGRID_SENDER_MAIL,
@@ -419,7 +419,7 @@ export default {
 						}
 					)
 					.then(async (res) => {
-						console.log("lo de axios ===>", res);
+						// console.log("lo de axios ===>", res);
 						if (res.stat && res.stat === 200) {
 							await this.sendMerchantMail(merchant);
 						}
@@ -431,14 +431,14 @@ export default {
 		},
 		async sendMerchantMail(data) {
 			try {
-				console.log(data);
+				// console.log(data);
 				this.$axios
 					.$post(
 						"https://us-central1-poncholas-1a51a.cloudfunctions.net/sendMerchant",
 						data
 					)
 					.then(async (res) => {
-						console.log("lo de axios DOS ===>", res);
+						// console.log("lo de axios DOS ===>", res);
 						if (res.stat && res.stat === 200) {
 							this.$notify({
 								group: "all",
@@ -460,7 +460,7 @@ export default {
 				.dispatch("checkout/paymentInfo", tipo)
 				.then((res) => {
 					if (res.id) {
-						console.log("====> estoooo payment", res);
+						// console.log("====> estoooo payment", res);
 						this.payment_merchant_info = res;
 						if (res.attributes.tasa_cambio && res.attributes.tasa_cambio > 0) {
 							this.rateBs = res.attributes.tasa_cambio;

@@ -1,9 +1,9 @@
 <template lang="html">
-    <div> 
-        <!-- <h1>{{ product.title }}</h1> -->
-        <h1>{{ product.attributes.name }}</h1>
-        <div class="ps-product__meta">
-            <!-- <p>
+	<div>
+		<!-- <h1>{{ product.title }}</h1> -->
+		<h1>{{ product.attributes.name }}</h1>
+		<div class="ps-product__meta">
+			<!-- <p>
                 Tipo:
                 <nuxt-link to="/shop">
                     <a class="ml-2 text-capitalize">
@@ -11,36 +11,36 @@
                     </a>
                 </nuxt-link>
             </p> -->
-            <div class="ps-product__rating">
-                <rating />
-                <span>(1 review)</span>
-            </div>
-        </div>
-        <h4 v-if="product.attributes.is_sale === true" class="ps-product__price sale">
-            <del class="mr-2"> $ {{ product.attributes.sale_price }}</del>
-            ${{ product.attributes.price}}
-        </h4>
-        <h4 v-else class="ps-product__price">
-            ${{ product.attributes.price }}
-        </h4>
-    </div>
+			<div class="ps-product__rating">
+				<rating />
+				<span>(1 review)</span>
+			</div>
+		</div>
+		<h4
+			v-if="product.attributes.is_sale === true"
+			class="ps-product__price sale"
+		>
+			<del class="mr-2"> $ {{ product.attributes.sale_price }}</del>
+			${{ product.attributes.price }}
+		</h4>
+		<h4 v-else class="ps-product__price">${{ product.attributes.price }}</h4>
+	</div>
 </template>
 
 <script>
-import Rating from '~/components/elements/Rating';
+import Rating from "~/components/elements/Rating";
 export default {
-    name: 'ModuleProductInfo',
-    components: { Rating },
-    props: {
-        product: {
-            Type: Object,
-            default: {}
-        }    
-    },
-    mounted(){
-        console.log(this.product)
-    }
-
+	name: "ModuleProductInfo",
+	components: { Rating },
+	props: {
+		product: {
+			Type: Object,
+			default: {},
+		},
+	},
+	mounted() {
+		// console.log(this.product)
+	},
 };
 </script>
 

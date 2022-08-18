@@ -83,13 +83,13 @@ export default {
 				const item = this.fabrics.find(
 					(item) => item.id === this.product.fabric
 				);
-				console.log(item);
+				// console.log(item);
 				this.productFabric = item.text;
 			}
 		}
 		if (this.sizes && this.sizes.length > 0) {
 			const item = this.sizes.find((item) => item.id === this.product.size);
-			console.log(item);
+			// console.log(item);
 			this.productSize = item.text;
 		}
 	},
