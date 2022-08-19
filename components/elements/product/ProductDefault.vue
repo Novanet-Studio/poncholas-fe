@@ -84,7 +84,7 @@ export default {
 	}),
 	methods: {
 		listenEventFromChildren(payload) {
-			console.log("lo del dial", payload);
+			// console.log("lo del dial", payload);
 			if (payload.isQuickview === true) {
 				this.quickviewDialog = true;
 			}

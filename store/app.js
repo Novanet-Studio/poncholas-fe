@@ -7,6 +7,8 @@ export const state = () => ({
 	currentDrawerContent: null,
 	currency: "$",
 	links: data.data,
+	fabrics: [],
+	sizes: [],
 });
 
 export const getters = {
@@ -26,6 +28,12 @@ export const mutations = {
 
 	setCurrency(state, payload) {
 		state.currency = payload;
+	},
+	setFabrics(state, payload) {
+		state.fabrics = payload;
+	},
+	setSizes(state, payload) {
+		state.sizes = payload;
 	},
 };
 
@@ -48,13 +56,20 @@ export const actions = {
 		const reponse = await Repository.get(`${baseUrl}/fabrics`)
 			.then((response) => {
 				if (response.data.data.length > 0) {
-					const cookieParams = {
-						data: response.data.data,
-					};
-					this.$cookies.set("fabrics", cookieParams, {
-						path: "/",
-						maxAge: 60 * 60 * 24 * 7,
+					var payload = response.data.data.map((item) => {
+						return {
+							text: item.attributes.name,
+							id: item.id,
+						};
 					});
+					commit("setFabrics", payload);
+					// const cookieParams = {
+					// 	data: response.data.data,
+					// };
+					// this.$cookies.set("fabrics", cookieParams, {
+					// 	path: "/",
+					// 	maxAge: 60 * 60 * 24 * 7,
+					// });
 				}
 			})
 			.catch((error) => ({ error: JSON.stringify(error) }));
@@ -63,13 +78,21 @@ export const actions = {
 		const reponse = await Repository.get(`${baseUrl}/sizes`)
 			.then((response) => {
 				if (response.data.data.length > 0) {
-					const cookieParams = {
-						data: response.data.data,
-					};
-					this.$cookies.set("sizes", cookieParams, {
-						path: "/",
-						maxAge: 60 * 60 * 24 * 7,
+					var payload = response.data.data.map((item) => {
+						return {
+							text: item.attributes.talla,
+							id: item.id,
+						};
 					});
+					commit("setSizes", payload);
+
+					// const cookieParams = {
+					// 	data: response.data.data,
+					// };
+					// this.$cookies.set("sizes", cookieParams, {
+					// 	path: "/",
+					// 	maxAge: 60 * 60 * 24 * 7,
+					// });
 				}
 			})
 			.catch((error) => ({ error: JSON.stringify(error) }));

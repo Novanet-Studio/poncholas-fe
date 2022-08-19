@@ -128,29 +128,31 @@ export default {
 	computed: {
 		...mapState({
 			cartItems: (state) => state.cart.cartItems,
+			dropdown_size: (state) => state.app.sizes,
+			dropdown_fabric: (state) => state.app.fabrics,
 		}),
-		dropdown_fabric() {
-			const response = this.$cookies.get("fabrics", { parseJSON: true });
-			if (response.data.length > 0) {
-				return response.data.map((item) => {
-					return {
-						text: item.attributes.name,
-						id: item.id,
-					};
-				});
-			}
-		},
-		dropdown_size() {
-			const response = this.$cookies.get("sizes", { parseJSON: true });
-			if (response.data.length > 0) {
-				return response.data.map((item) => {
-					return {
-						text: item.attributes.talla,
-						id: item.id,
-					};
-				});
-			}
-		},
+		// dropdown_fabric() {
+		// 	const response = this.$cookies.get("fabrics", { parseJSON: true });
+		// 	if (response.data.length > 0) {
+		// 		return response.data.map((item) => {
+		// 			return {
+		// 				text: item.attributes.name,
+		// 				id: item.id,
+		// 			};
+		// 		});
+		// 	}
+		// },
+		// dropdown_size() {
+		// 	const response = this.$cookies.get("sizes", { parseJSON: true });
+		// 	if (response.data.length > 0) {
+		// 		return response.data.map((item) => {
+		// 			return {
+		// 				text: item.attributes.talla,
+		// 				id: item.id,
+		// 			};
+		// 		});
+		// 	}
+		// },
 	},
 
 	data() {
@@ -172,6 +174,8 @@ export default {
 		}
 		// console.log(this.dropdown_fabric);
 		// this.getCustomDetails();
+		// console.log("los sizes state", this.dropdown_size);
+		// console.log("los sizes state", this.dropdown_fabric);
 	},
 	methods: {
 		validateItem() {

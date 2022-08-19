@@ -78,32 +78,34 @@ export default {
 			loading: (state) => state.cart.loading,
 			cartItems: (state) => state.cart.cartItems,
 			cartProducts: (state) => state.product.cartProducts,
+			sizes: (state) => state.app.sizes,
+			fabrics: (state) => state.app.fabrics,
 		}),
 		baseUrl() {
 			return baseUrl;
 		},
-		fabrics() {
-			const response = this.$cookies.get("fabrics", { parseJSON: true });
-			if (response.data && response.data.length > 0) {
-				return response.data.map((item) => {
-					return {
-						text: item.attributes.name,
-						id: item.id,
-					};
-				});
-			}
-		},
-		sizes() {
-			const response = this.$cookies.get("sizes", { parseJSON: true });
-			if (response.data && response.data.length > 0) {
-				return response.data.map((item) => {
-					return {
-						text: item.attributes.talla,
-						id: item.id,
-					};
-				});
-			}
-		},
+		// fabrics() {
+		// 	const response = this.$cookies.get("fabrics", { parseJSON: true });
+		// 	if (response.data && response.data.length > 0) {
+		// 		return response.data.map((item) => {
+		// 			return {
+		// 				text: item.attributes.name,
+		// 				id: item.id,
+		// 			};
+		// 		});
+		// 	}
+		// },
+		// sizes() {
+		// 	const response = this.$cookies.get("sizes", { parseJSON: true });
+		// 	if (response.data && response.data.length > 0) {
+		// 		return response.data.map((item) => {
+		// 			return {
+		// 				text: item.attributes.talla,
+		// 				id: item.id,
+		// 			};
+		// 		});
+		// 	}
+		// },
 	},
 	async mounted() {
 		// await this.getDetails();
