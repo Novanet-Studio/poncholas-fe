@@ -27,17 +27,26 @@ export const mutations = {
 			if (existItem) {
 				//verify if is it a custom item
 				if (existItem.custom === true) {
-					state.cartItems.push(payload);
+					if (
+						existItem.size === payload.size &&
+						existItem.fabric === payload.fabric
+					) {
+						existItem.quantity += payload.quantity;
+					} else {
+						state.cartItems.push(payload);
+						state.total++;
+					}
 				} else if (existItem.size === payload.size) {
 					//verify if is the same zise
 					existItem.quantity += payload.quantity;
 				} else {
 					state.cartItems.push(payload);
+					state.total++;
 				}
 			} else {
 				state.cartItems.push(payload);
+				state.total++;
 			}
-			state.total++;
 		} else {
 			state.cartItems.push(payload);
 			state.total = 1;

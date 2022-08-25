@@ -62,7 +62,7 @@
 			</div>
 		</div>
 		<div class="ps-product__shopping">
-			<figure v-if="!customItem">
+			<figure>
 				<figcaption>Cantidad</figcaption>
 				<div class="form-group--number">
 					<button class="up" @click.prevent="handleIncreaseQuantity">
