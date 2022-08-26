@@ -25,13 +25,27 @@
 		<div class="ps-page--product">
 			<div class="ps-container">
 				<div class="ps-page__container">
-					<div class="ps-page__left">
+					<div v-if="isLoading === false" class="ps-page__left">
 						<product-detail-fullwidth
 							v-if="product !== null"
 							:product="product"
 						/>
 					</div>
-					<!-- <div class="ps-page__right"></div> -->
+					<div v-else class="ps-page__left">
+						<div class="ps-product--detail ps-product--fullwidth">
+							<div class="ps-product__header">
+								<div class="ps-product__thumbnail " data-vertical="true">
+									<v-skeleton-loader
+										class=""
+										max-width="500"
+										min-width="250"
+										max-heigh="500"
+										type="image"
+									></v-skeleton-loader>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -62,6 +76,7 @@ export default {
 	},
 	data() {
 		return {
+			isLoading: true,
 			productId: this.$route.params.id,
 			breadCrumb: null,
 			pageLoading: true,
@@ -98,6 +113,7 @@ export default {
 		this.$store.commit("app/setAppDrawer", false);
 		var product = this.producto();
 		await product.then((data) => {
+			this.isLoading = false;
 			return (this.product = data);
 		});
 
