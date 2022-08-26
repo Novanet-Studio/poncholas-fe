@@ -1,6 +1,14 @@
 <template lang="html">
 	<div>
 		<form id="payment-form">
+			<div v-if="loadingInit === true" class="text-center mb-5">
+				<p>Cargando</p>
+				<v-progress-circular
+					class="text-center mx-auto"
+					indeterminate
+					color="red"
+				></v-progress-circular>
+			</div>
 			<div id="card-container"></div>
 			<div class="form-group">
 				<p>
@@ -36,6 +44,7 @@ export default {
 		productMail: "",
 		productosFinalesHtml: "",
 		productsCart: "",
+		loadingInit: true,
 	}),
 	computed: {
 		cart() {
@@ -72,6 +81,9 @@ export default {
 		const card = await payments.card();
 		await card.attach("#card-container");
 		this.card = card;
+		if (this.card !== null) {
+			this.loadingInit = false;
+		}
 		// console.log(this.cart);
 		// console.log(this.cookie);
 		// this.invoicesTest(this.cart.cartItems)
