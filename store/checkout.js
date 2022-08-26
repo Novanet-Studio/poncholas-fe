@@ -55,7 +55,7 @@ export const actions = {
 	async getAllInvoices({ commit }, payload) {
 		const userId = payload;
 		const response = await Repository.get(
-			`${baseUrl}/invoices?populate[products][populate]=%2A&filters[user_id]=${userId}`
+			`${baseUrl}/invoices?populate[products]late]=%2A&filters[user_id]=${userId}`
 		)
 			.then((response) => {
 				console.log("desde el store -====> invoice", response);
