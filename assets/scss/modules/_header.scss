@@ -93,7 +93,7 @@
     > i {
       font-size: 30px;
       line-height: 42px;
-      color: $color-dark;
+      color: white;
     }
 
     span {
@@ -108,7 +108,7 @@
       width: 20px;
       height: 20px;
       color: #ffffff;
-      background-color: #e36d65;
+      background-color: $color-dark;
       border-radius: 50%;
 
       i {
@@ -121,7 +121,7 @@
 
     &:hover {
       i {
-        color: #404041;
+        color: white;
       }
     }
   }

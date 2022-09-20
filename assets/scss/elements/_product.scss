@@ -44,7 +44,7 @@
     .ps-product__price {
         position: relative;
         font-size: 16px;
-        color: $color-heading;
+        color: $color-dark;
 
         &.sale {
             color: #f30;
@@ -124,11 +124,11 @@
     .ps-product__title {
         margin: 0;
         display: block;
-        font-size: 14px;
+        font-size: 1.2em;
         line-height: 1.2em;
         padding-bottom: 5px;
         padding-left: 0;
-        color: #06c;
+        color: $color-1st;
         --max-lines: 2;
         max-height: calc(1.2em * var(--max-lines));
         overflow: hidden;
@@ -180,7 +180,7 @@
 
     .ps-product__content {
         > p {
-            color: $color-heading;
+            color: $color-dark;
         }
 
         &.hover {

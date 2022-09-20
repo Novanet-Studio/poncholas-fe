@@ -4,7 +4,7 @@
             <div class="ps-container">
                 <div class="header__left">
                     <nuxt-link to="/" class="ps-logo">
-                        <img src="/img/farine-logo.png" alt="martfury" />
+                        <img src="/img/poncholas-logo.png" alt="martfury" />
                     </nuxt-link>
                 </div>
                 <div class="header__center">
