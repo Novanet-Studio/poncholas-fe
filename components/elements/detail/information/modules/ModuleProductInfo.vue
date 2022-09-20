@@ -11,10 +11,10 @@
                     </a>
                 </nuxt-link>
             </p> -->
-			<div class="ps-product__rating">
+			<!-- <div class="ps-product__rating">
 				<rating />
 				<span>(1 review)</span>
-			</div>
+			</div> -->
 		</div>
 		<h4
 			v-if="product.attributes.is_sale === true"

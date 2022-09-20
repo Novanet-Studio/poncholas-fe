@@ -1570,7 +1570,7 @@
                 position: relative;
                 display: block;
                 font-size: 20px;
-                color: $color-heading;
+                color: $color-dark;
                 margin-bottom: 35px;
 
                 &:after {
@@ -1588,7 +1588,7 @@
 
         .ps-btn--outline {
             border-color: #cccccc;
-            color: $color-heading;
+            color: $color-1st;
             border-radius: 0;
 
             &:hover {
