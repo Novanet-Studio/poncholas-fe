@@ -8,17 +8,17 @@
           <li>
             <a
               class="general"
-              href="https://www.instagram.com/farinebyvane/?hl=es"
+              href="https://www.instagram.com/ponchola_parkas/"
             >
               <i class="fab fa-instagram"></i>
             </a>
-            @farinebyvane
+            @ponchola_parkas
           </li>
           <li>
             <a class="general" href="#">
-              <i class="fa fa-phone"></i>
+              <i class="fa-brands fa-whatsapp"></i>
             </a>
-            +58.0412.319.48.27
+            +58-412-2372519
           </li>
           <li>
             <a class="general" href="#">
@@ -27,7 +27,7 @@
                         </a>"
               ></i>
             </a>
-            vanessa@farinebyvane.com - farinebyvane@gmail.com
+            poncholas@poncholaparkas.com
           </li>
         </ul>
       </div>
