@@ -1,6 +1,6 @@
 <template lang="html">
 	<ul class="ps-product__actions">
-		<!-- <li>
+		<li>
 			<a
 				to="#"
 				data-toggle="tooltip"
@@ -10,7 +10,7 @@
 			>
 				<i class="icon-bag2"></i>
 			</a>
-		</li> -->
+		</li>
 
 		<li>
 			<a
@@ -64,32 +64,39 @@ export default {
 		}
 	},
 	methods: {
+		// async handleAddToCart() {
+		// 	let item = {
+		// 		id: this.product.id,
+		// 		quantity: 1,
+		// 		price: this.product.attributes.price,
+		// 	};
+		// 	this.$store.dispatch("cart/addProductToCart", item);
+		// 	let queries = [];
+		// 	this.cartItems.forEach((item) => {
+		// 		queries.push(item.id);
+		// 	});
+		// 	var respuesta = await this.$store.dispatch(
+		// 		"product/getCartProducts",
+		// 		queries
+		// 	);
+		// 	// this.getCartProduct(this.cartItems);
+		// 	this.$notify({
+		// 		group: "all",
+		// 		title: "¡Producto agregado!",
+		// 		text: `${this.product.attributes.name} ha sido agregado al carrito!`,
+		// 	});
+		// 	// const handler = new HandlerActions()
+		// 	// handler.handleAddToCart(this.product)
+		// 	// console.log(this.$cookies.get("cart"));
+		// 	// console.log(this.cartItems);
+		// 	// console.log(respuesta, "desdeaqui");
+		// },
 		async handleAddToCart() {
-			let item = {
-				id: this.product.id,
-				quantity: 1,
-				price: this.product.attributes.price,
+			const payload = {
+				isQuickview: true,
+				all: true,
 			};
-			this.$store.dispatch("cart/addProductToCart", item);
-			let queries = [];
-			this.cartItems.forEach((item) => {
-				queries.push(item.id);
-			});
-			var respuesta = await this.$store.dispatch(
-				"product/getCartProducts",
-				queries
-			);
-			// this.getCartProduct(this.cartItems);
-			this.$notify({
-				group: "all",
-				title: "¡Producto agregado!",
-				text: `${this.product.attributes.name} ha sido agregado al carrito!`,
-			});
-			// const handler = new HandlerActions()
-			// handler.handleAddToCart(this.product)
-			// console.log(this.$cookies.get("cart"));
-			// console.log(this.cartItems);
-			// console.log(respuesta, "desdeaqui");
+			this.$emit("toParent", payload);
 		},
 
 		handleAddItemToWishlist() {
