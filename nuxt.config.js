@@ -1,8 +1,8 @@
 export default {
   target: "static",
   head: {
-    titleTemplate: "Farine by Vane - Cachitos",
-    title: "Farine by Vane - Cachitos",
+    titleTemplate: "WET'N WARM - Poncholas Parkas",
+    title: "WET'N WARM - Poncholas Parkas",
     meta: [
       { charset: "utf-8" },
       {
@@ -12,7 +12,8 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "Farine by Vane - Cachitos",
+        content:
+          "Protección antes y al terminar de entrenar en las aventuras acuáticas o al aire libre en deportes como la natación, el Kitesurf, el surf, voleibol de playa, tenis de playa, pesca, paseos, entre otros",
       },
     ],
     link: [
@@ -162,7 +163,7 @@ export default {
     },
     icon: {
       source: "static/icon.png",
-      fileName: "icon.png"
-    }
+      fileName: "icon.png",
+    },
   },
 };

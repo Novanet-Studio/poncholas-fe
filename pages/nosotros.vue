@@ -1,19 +1,19 @@
 <template lang="html">
     <div class="ps-page--single">
         <img src="~/static/img/bg/about-us.jpg" alt="" />
-        <about-awards />
+        <Poncholas />
     </div>
 </template>
 
 <script>
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import OurTeam from '~/components/partials/page/OurTeam';
-import AboutAwards from '~/components/partials/page/AboutAwards';
+import Poncholas from '~/components/partials/page/Poncholas';
 
 export default {
     layout: "layout-default",
     components: {
-        AboutAwards,
+        Poncholas,
         OurTeam,
         BreadCrumb
     },

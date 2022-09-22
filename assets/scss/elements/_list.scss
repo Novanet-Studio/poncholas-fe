@@ -49,13 +49,16 @@
 }
 
 .ps-list--pricing {
+
+        list-style: none;
+
     li {
         position: relative;
         padding: 1.5rem 2rem;
         @include clearfix();
         background-color: #ffffff;
         vertical-align: top;
-        color: #000000;
+        color: $color-text;
 
         span {
             float: right;
