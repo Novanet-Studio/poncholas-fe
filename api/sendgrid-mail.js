@@ -12,8 +12,8 @@ app.post("/", (req, res) => {
   const msg = {
     to: req.body.email,
     from: senderMail,
-    subject: `Farine recibo de compra ${req.body.order_id}`,
-    text: "Farine recibo de compra",
+    subject: `WET'N WARM recibo de compra ${req.body.order_id}`,
+    text: "WET'N WARM recibo de compra",
     html: `
     <table
   width="100%"
@@ -153,7 +153,7 @@ app.post("/", (req, res) => {
                                     font-size: 16px;
                                   "
                                   width="150"
-                                  alt="Farine logo"
+                                  alt="Poncholas logo"
                                   data-proportionally-constrained="true"
                                   data-responsive="false"
                                   src="https://res.cloudinary.com/novanet-studio/image/upload/v1663767416/poncholas/mailing/ponchola-mail-header-logo_viyaoy.png"
@@ -878,8 +878,8 @@ app.post("/merchant", (req, res) => {
   const msg = {
     to: ordersMail,
     from: senderMail,
-    subject: `Farine nueva orden ${req.body.order_id}`,
-    text: "Farine nueva orden",
+    subject: `WET'N WARM nueva orden ${req.body.order_id}`,
+    text: "WET'N WARM nueva orden",
     html: `
     <table
   width="100%"
@@ -1023,7 +1023,7 @@ app.post("/merchant", (req, res) => {
                                     font-size: 16px;
                                   "
                                   width="150"
-                                  alt="Farine logo"
+                                  alt="Poncholas logo"
                                   data-proportionally-constrained="true"
                                   data-responsive="false"
                                   src="https://res.cloudinary.com/novanet-studio/image/upload/v1663767416/poncholas/mailing/ponchola-mail-header-logo_viyaoy.png"
