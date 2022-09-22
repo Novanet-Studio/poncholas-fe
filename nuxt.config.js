@@ -150,15 +150,19 @@ export default {
   },
   pwa: {
     meta: {
-      title: "Farine by Vane",
+      title: "Poncholas Parkas",
       author: "Novanet Studio <info@novanet.studio>",
-      description: "Tienda en mano de Farine by Vane",
+      description: "Tienda en mano de Poncholas Parkas",
     },
     manifest: {
-      name: "Farine by Vane web app",
-      short_name: "Farine app",
+      name: "Poncholas app",
+      short_name: "Poncholas app",
       lang: "es",
-      background_color: "#feeed7",
+      background_color: "#369997",
     },
+    icon: {
+      source: "static/icon.png",
+      fileName: "icon.png"
+    }
   },
 };
