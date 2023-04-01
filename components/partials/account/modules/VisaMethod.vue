@@ -233,7 +233,7 @@ export default {
         cardKind: payment.cardDetails.card.cardType,
         cardLast: payment.cardDetails.card.last4,
         payment_info: [paymentInfo],
-        payment_method: "sqaureUp",
+        payment_method: "squareup",
       };
 
       const payload = {
