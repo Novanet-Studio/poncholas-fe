@@ -180,11 +180,22 @@ export default {
   },
   methods: {
     getRealSize() {
-      if (this.product.attributes.name.toLowerCase() === "niños") {
+      const productName = this.product.attributes.name.toLowerCase();
+      if (productName === "niños") {
         const boysAllowedSizes = ["6", "7", "8", "9", "10"];
         const sizes = this.dropdown_size
           .filter((item) => boysAllowedSizes.includes(item.text))
           .sort((a, b) => a.text - b.text);
+
+        return sizes;
+      }
+
+      if (productName.includes("adultos")) {
+        const allowedSizes = ["12", "S", "M", "L"];
+
+        const sizes = this.dropdown_size.filter((item) =>
+          allowedSizes.includes(item.text)
+        );
 
         return sizes;
       }
