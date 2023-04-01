@@ -28,7 +28,11 @@
         >
           <i class="icon icon-cross"></i>
         </a>
-        <product-quickview :product="product" :showAll="showAll" />
+        <product-quickview
+          :product="product"
+          :showAll="showAll"
+          @closeModal="quickviewDialog = false"
+        />
       </div>
     </v-dialog>
   </div>
