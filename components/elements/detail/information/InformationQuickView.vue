@@ -49,7 +49,7 @@
         <v-container id="sizeQuick" class="el--drop">
           <v-overflow-btn
             class="my-3"
-            :items="dropdown_size"
+            :items="getRealSize()"
             label="selecciona la talla"
             item-value="id"
             item-text="text"
@@ -179,6 +179,18 @@ export default {
     // console.log("los sizes state", this.dropdown_fabric);
   },
   methods: {
+    getRealSize() {
+      if (this.product.attributes.name.toLowerCase() === "niños") {
+        const boysAllowedSizes = ["6", "7", "8", "9", "10"];
+        const sizes = this.dropdown_size
+          .filter((item) => boysAllowedSizes.includes(item.text))
+          .sort((a, b) => a.text - b.text);
+
+        return sizes;
+      }
+
+      return this.dropdown_size;
+    },
     validateItem() {
       //validations
       this.loading = true;
