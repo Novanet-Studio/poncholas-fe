@@ -4,7 +4,7 @@
       v-for="item in mainMenu"
       :key="item.text"
       class="transition first:pl-0 hover:text-color-4"
-      :class="$route.path === item?.url ? 'text-color-4' : 'text-color-2'"
+      :class="$route.path === item?.url ? 'text-color-4' : 'text-white'"
     >
       <nuxt-link class="menu__item" :to="item.url">
         {{ item.text }}

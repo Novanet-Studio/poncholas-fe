@@ -12,9 +12,9 @@ export default defineConfig({
   theme: {
     colors: {
       color: {
-        1: '#feeed7',
-        2: '#e36d65',
-        3: '#f4f4f4',
+        1: '#369997',
+        2: '#77cfce',
+        3: '#161824',
         4: '#282932',
         5: '#161824',
         6: '#0c6dce',
@@ -32,7 +32,7 @@ export default defineConfig({
   shortcuts: {
     'border-color-1': 'border-[#feeed7]',
     'border-color-2': 'border-[#e36d65]',
-    'border-color-3': 'border-[#f4f4f4]',
+    'border-color-3': 'border-[#161824]',
     'border-color-4': 'border-[#282932]',
     'border-color-5': 'border-[#161824]',
     'border-color-6': 'border-[#0c6dce]',
@@ -42,9 +42,9 @@ export default defineConfig({
       'flex justify-center border !bg-transparent rounded-md border-color-2 text-color-2 hover:(!bg-color-2 !border-transparent !text-white)',
     'header-actions': 'flex items-center justify-between',
     'header-actions__link': 'flex relative transition ease',
-    'header-actions__icon': 'text-4xl text-[2.45rem]',
+    'header-actions__icon': 'text-4xl text-[2.45rem] text-white',
     'header-actions__indicator-wrapper':
-      'absolute bottom-0 -right-[3px] flex justify-center items-center w-[20px] h-[20px] text-white bg-color-2 rounded-full',
+      'absolute bottom-0 -right-[3px] flex justify-center items-center w-[20px] h-[20px] text-white bg-dark rounded-full',
     'header-actions__indicator': 'text-xs leading-4 font-medium not-italic',
 
     'input-group': 'py-3 pt-2 first:mb-4',

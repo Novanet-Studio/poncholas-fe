@@ -78,7 +78,7 @@ const handleLogout = () => {
 }
 
 .user-area__link {
-  @apply block font-bold text-sm;
+  @apply block font-bold text-sm text-white;
 }
 
 .user-area__menu {

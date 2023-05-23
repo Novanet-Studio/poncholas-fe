@@ -11,7 +11,7 @@
           <a class="widgets__link" :href="item.link">
             <component
               :is="item.icon"
-              v-bind="{ class: 'text-color-2 lg:text-xl', weight: 'light' }"
+              v-bind="{ class: 'text-color-1 lg:text-xl', weight: 'light' }"
             />
           </a>
           {{ item.text }}
@@ -26,6 +26,7 @@ import {
   PhInstagramLogo,
   PhWhatsappLogo,
   PhEnvelope,
+  PhFacebookLogo,
 } from '@phosphor-icons/vue';
 
 const socialNetworks = [
@@ -36,13 +37,18 @@ const socialNetworks = [
   },
   {
     link: '#',
+    icon: PhFacebookLogo,
+    text: 'ponchola_Parkas',
+  },
+  {
+    link: '#',
     icon: PhWhatsappLogo,
     text: '+58 412-3194827',
   },
   {
     link: '#',
     icon: PhEnvelope,
-    text: 'vanessa@farinebyvane.com - farinebyvane@gmail.com',
+    text: 'poncholas@poncholasparkas.com',
   },
 ];
 </script>
@@ -57,7 +63,7 @@ const socialNetworks = [
 }
 
 .widgets__title {
-  @apply text-3xl pb-4 font-bold text-color-2;
+  @apply text-3xl pb-4 font-extrabold text-color-1;
 }
 
 .widgets__list {

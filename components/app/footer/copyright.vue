@@ -27,7 +27,7 @@
 }
 
 .copyright__site {
-  @apply block w-full mb-0 leading-8 text-sm text-color-2 lg:w-auto;
+  @apply block w-full mb-0 leading-8 text-sm text-dark lg:w-auto;
 }
 
 .copyright__payment {
@@ -35,7 +35,7 @@
 }
 
 .copyright__payment-title {
-  @apply block text-color-2 pb-[10px] lg:(pb-0 pr-2);
+  @apply block text-black pb-[10px] lg:(pb-0 pr-2);
 }
 
 .copyright__author {
@@ -43,6 +43,6 @@
 }
 
 .copyright__author-text {
-  @apply mr-2 text-color-2;
+  @apply mr-2 text-black;
 }
 </style>

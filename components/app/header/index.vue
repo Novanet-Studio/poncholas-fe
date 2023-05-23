@@ -6,8 +6,8 @@
           <nuxt-link class="header__link" to="/">
             <img
               class="w3/5 lg:w-auto"
-              src="~/assets/img/farine-logo.png"
-              alt="Farine Logo"
+              src="~/assets/img/poncholas-logo.png"
+              alt="Poncholas Logo"
             />
           </nuxt-link>
         </div>
@@ -45,7 +45,7 @@ onUnmounted(() => {
 
 <style scoped>
 .header__wrapper {
-  @apply px-4 py-8 bg-color-1 border-b border-b-[#c0c0c0] md:px-6;
+  @apply px-4 py-8 bg-color-1 border-b border-b-[rgba(0,0,0,0.15)] md:px-6;
 }
 
 .header--sticky {
