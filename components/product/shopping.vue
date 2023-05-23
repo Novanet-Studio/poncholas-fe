@@ -162,10 +162,10 @@ const handleAddToCart = (isBuyNow = false) => {
 }
 
 .shopping__btn {
-  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-color-2 mx-7 mb-4 border rounded-md transition ease md:w-full lg:(text-xs mb-0 max-w-50);
+  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-color-1 mx-7 mb-4 border rounded-md transition ease md:w-full lg:(text-sm mb-0 max-w-50);
 }
 
 .shopping__btn-alt {
-  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease text-color-2 rounded-md bg-color-1 md:w-auto lg:(text-xs mr-7) hover:(text-white border-transparent bg-color-2);
+  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease rounded-md bg-color-2 md:w-auto lg:(text-sm mr-7) hover:(text-white border-transparent bg-color-2);
 }
 </style>

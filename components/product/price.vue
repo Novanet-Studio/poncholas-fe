@@ -1,7 +1,5 @@
 <template>
-  <p class="relative text-base text-color-2" :class="class">
-    ${{ product.price }}
-  </p>
+  <p class="relative text-base" :class="class">${{ product.price }}</p>
 </template>
 
 <script lang="ts" setup>

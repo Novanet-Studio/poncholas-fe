@@ -2,7 +2,7 @@
   <client-only>
     <div class="lg:(flex flex-row-reverse)" data-vertical="true">
       <figure>
-        <div class="w-22rem mb-4 lg:(w-25rem max-w-full)">
+        <div class="w-22rem mb-4 lg:(w-40rem max-w-full)">
           <!-- Gallery-->
           <div class="ps-product__gallery">
             <swiper
@@ -113,7 +113,7 @@ const setThumbsSwiper = (swiper: any) => {
 
 .swiper-thumbs {
   /* height: 20%; */
-  height: 120px;
+  height: 100px;
   width: 300px;
   box-sizing: border-box;
   /* padding: 10px 0; */
@@ -127,6 +127,7 @@ const setThumbsSwiper = (swiper: any) => {
 
 .swiper-thumbs .swiper-slide-thumb-active {
   opacity: 1;
+  @apply border border-color-1;
 }
 
 .swiper-slide img {

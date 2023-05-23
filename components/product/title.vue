@@ -14,6 +14,6 @@ defineProps<Props>();
 
 <style scoped>
 .title {
-  @apply m-0 block text-sm pt-2 pb-1 pl-0 overflow-hidden pr-4 text-color-6;
+  @apply m-0 block pt-2 pb-1 pl-0 overflow-hidden pr-4 text-color-1;
 }
 </style>

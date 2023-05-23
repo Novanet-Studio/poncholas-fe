@@ -30,8 +30,8 @@ export default defineConfig({
     },
   },
   shortcuts: {
-    'border-color-1': 'border-[#feeed7]',
-    'border-color-2': 'border-[#e36d65]',
+    'border-color-1': 'border-[#369997]',
+    'border-color-2': 'border-[#77cfce]',
     'border-color-3': 'border-[#161824]',
     'border-color-4': 'border-[#282932]',
     'border-color-5': 'border-[#161824]',
