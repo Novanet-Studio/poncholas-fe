@@ -2,7 +2,7 @@
   <div class="input-group" :class="class">
     <div
       class="flex items-center border p-4 rounded-md"
-      :class="[error && 'input--error', focus && 'border-[#e36d65]']"
+      :class="[error && 'input--error', focus && 'border-color-1']"
     >
       <div class="mr-3" v-if="$slots.left">
         <slot name="left" />
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="">
-      <div class="text-xs pt-1 text-red-500" v-if="error && errorMessage">
+      <div class="text-xs pt-1 text-red-600" v-if="error && errorMessage">
         {{ errorMessage }}
       </div>
     </div>
@@ -61,5 +61,3 @@ const value = computed({
   set: (val: string) => emits('update:modelValue', val),
 });
 </script>
-
-<style scoped></style>

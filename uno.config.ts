@@ -37,7 +37,7 @@ export default defineConfig({
     'border-color-5': 'border-[#161824]',
     'border-color-6': 'border-[#0c6dce]',
     'border-color-7': 'border-[#c0c0c0]',
-    btn: 'w-full text-center text-color-2 font-bold py-4 inline-block text-sm border-transparent rounded-md bg-color-1 transition ease cursor-pointer hover:(bg-opacity-80) active:( bg-opacity-80)',
+    btn: 'w-full text-center text-color-3 text-white py-4 inline-block text-sm border-transparent rounded-md bg-color-1 transition ease cursor-pointer hover:(bg-opacity-80) active:(bg-opacity-80)',
     'btn--outline':
       'flex justify-center border !bg-transparent rounded-md border-color-2 text-color-2 hover:(!bg-color-2 !border-transparent !text-white)',
     'header-actions': 'flex items-center justify-between',
@@ -50,7 +50,7 @@ export default defineConfig({
     'input-group': 'py-3 pt-2 first:mb-4',
     'input-error': 'border-red-500',
     'auth-form__wrapper': 'bg-white p-6 max-w-[26rem] mx-auto mb-4',
-    'auth-form__title': 'text-base mb-4 text-color-2',
+    'auth-form__title': 'text-base mb-4 text-color-1',
     'auth-form__footer': 'py-3 mb-4 mt-2',
     form__group: 'mb-4 md:mb-10',
     'form__btn-group': 'mb-0 md:(mb-10 w-[25%])',
@@ -59,7 +59,7 @@ export default defineConfig({
 
     // Block
     'b-header': 'text-center pb-16 md:pb-[6.25rem]',
-    'b-title': 'text-3xl font-semibold text-color-2 md:text-5xl',
+    'b-title': 'text-3xl font-semibold text-color-1 md:text-5xl',
     'b-content': 'flex flex-col gap-8 lg:(flex-row mx-32)',
     'b-left': 'flex-[0_0_100%] md:flex-[0_0_65%]',
     'b-right': 'flex-[0_0_100%] md:flex-[0_0_35%]',

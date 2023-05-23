@@ -5,7 +5,7 @@
         <nuxt-link class="access__link" to="/">
           <img
             class="filter filter-drop-shadow"
-            src="~/assets/img/farine-logo.png"
+            src="~/assets/img/poncholas-logo.png"
             alt="Project logo"
           />
         </nuxt-link>
