@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     head: {
-      title: 'Farine by Vane - Cachitos',
+      title: "WET'N WARM - Poncholas Parkas",
+      titleTemplate: "WET'N WARM - Poncholas Parkas",
       meta: [
         { charset: 'utf-8' },
         {
@@ -15,7 +16,8 @@ export default defineNuxtConfig({
         {
           hid: 'description',
           name: 'description',
-          content: 'Farine by Vane - Cachitos',
+          content:
+            'Protección antes y al terminar de entrenar en las aventuras acuáticas o al aire libre en deportes como la natación, el Kitesurf, el surf, voleibol de playa, tenis de playa, pesca, paseos, entre otros',
         },
       ],
       link: [
@@ -78,20 +80,21 @@ export default defineNuxtConfig({
 
   pwa: {
     meta: {
-      title: 'Farine by Vane',
-      name: 'Farine by Vane Aplicación web',
+      title: 'Poncholas Parkas',
+      name: 'Poncholas Parkas Aplicación web',
       author: 'Novanet Studio <info@novanet.studio>',
-      description: 'Tienda en mano de Farine by Vane',
+      description: 'Tienda en mano de Poncholas Parkas',
       theme_color: '#fcd34d',
       lang: 'es',
     },
     manifest: {
-      name: 'Farine by Vane Aplicación web',
-      short_name: 'Farine by Vane',
-      description: 'Tienda en mano de Farine by Vane',
+      name: 'Poncholas Parkas App',
+      short_name: 'Poncholas app',
+      description: 'Tienda en mano de Poncholas Parkas',
+      lang: 'es',
       start_url: '/',
       display: 'standalone',
-      background_color: '#feeed7',
+      background_color: '#369997',
     },
     icon: { source: 'static/icon.png' },
     /*workbox: {
