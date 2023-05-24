@@ -66,7 +66,7 @@ onMounted(() => {
 
 <style scoped>
 .account {
-  @apply flex relative bg-color-3;
+  @apply flex relative bg-[#f1f1f1];
 }
 
 .account__wrapper {

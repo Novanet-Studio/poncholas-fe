@@ -16,23 +16,23 @@
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden rounded-md">
               <table class="min-w-full">
-                <thead class="border-b">
+                <thead class="border-y border-y-gray-300">
                   <tr>
                     <th
                       scope="col"
-                      class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+                      class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                     >
                       Nombre
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+                      class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                     >
                       Precio por unidad
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+                      class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                     >
                       Acciones
                     </th>
@@ -40,7 +40,7 @@
                 </thead>
                 <tbody>
                   <tr
-                    class="border-b transition duration-300 ease-in-out hover:bg-color-8 group"
+                    class="border-b border-b-gray-300 transition duration-300 ease-in-out hover:bg-color-8 group"
                     v-for="item in productStore.wishlistItems"
                     :key="item.id"
                   >
@@ -53,12 +53,12 @@
                       />
                     </td>
                     <td
-                      class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                      class="text-sm text-dark font-light px-6 py-4 whitespace-nowrap lg:text-base"
                     >
                       $ {{ item.price.toFixed(2) }}
                     </td>
                     <td
-                      class="text-sm text-color-6 font-light px-6 py-4 lg:text-base lg:flex items-center h-full"
+                      class="text-sm font-light px-6 py-4 lg:text-base lg:flex items-center h-full"
                     >
                       <app-button
                         class="!w-48 !mt-14"
@@ -68,7 +68,7 @@
                       </app-button>
                       <a
                         href="#"
-                        class="text-color-2 ml-2 !mt-12"
+                        class="text-color-1 ml-2 !mt-12"
                         @click.prevent="handleRemoveItemFromWishlist(item)"
                       >
                         <ph-x weight="light" />
@@ -185,10 +185,10 @@ onMounted(() => {
 }
 
 .wishlist__title {
-  @apply text-3xl font-semibold text-color-2 lg:text-5xl;
+  @apply text-3xl font-semibold text-color-1 lg:text-5xl;
 }
 
 .wishlist__subtitle {
-  @apply text-xl text-color-2 mb-2 font-bold lg:text-2xl;
+  @apply text-xl text-color-1 mb-2 font-bold lg:text-2xl;
 }
 </style>

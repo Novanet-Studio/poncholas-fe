@@ -1,10 +1,10 @@
 <template>
   <ul class="border border-gray-300">
     <li
-      class="border-b-2 last:border-b-gray-300"
+      class="border-b-2 border-b-gray-300"
       v-for="link in links"
       :key="link.text"
-      :class="hasText(link?.name) ? 'text-color-2' : ''"
+      :class="hasText(link?.name) ? 'text-color-1' : ''"
     >
       <nuxt-link
         :to="link.url"
