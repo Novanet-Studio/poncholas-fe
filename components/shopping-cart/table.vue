@@ -42,31 +42,31 @@
               <tr>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Producto
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Precio
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Cantidad
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Total
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Acciones
                 </th>
@@ -92,9 +92,9 @@
                   ${{ product.price }}
                 </td>
                 <td
-                  class="text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm text-color-1 font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
-                  <quantity class="group-hover:bg-white" :product="product" />
+                  <quantity :product="product" />
                 </td>
                 <td
                   class="text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg:text-base"

@@ -41,11 +41,11 @@ import { Tabs, Tab } from 'vue3-tabs-component';
 }
 
 :deep(.is-active:not(a)) {
-  @apply px-4 py-3 border-b-2 border-dark-1 text-color-2;
+  @apply px-4 py-3 border-b-2 border-color-1 text-color-1;
 }
 
 :deep(.is-disabled:not(a)) {
-  @apply px-4 py-3 border-b-2 border-dark-1 text-color-2;
+  @apply px-4 py-3 border-b-2 border-color-1 text-color-1;
 }
 
 :deep(.tabs-component-panels) {

@@ -8,7 +8,7 @@
       <div class="visa__terms-wrapper">
         <p class="visa__text">
           By making this purchase you agree to
-          <a href="#" class="visa__link">our terms and conditions</a>.
+          <a href="#" class="terms">our terms and conditions</a>.
         </p>
         <app-button
           :text="state.isLoading ? '...' : 'Pagar'"
@@ -403,9 +403,5 @@ onMounted(async () => {
 
 .visa__text {
   @apply text-sm mb-8;
-}
-
-.visa__link {
-  @apply text-color-2;
 }
 </style>

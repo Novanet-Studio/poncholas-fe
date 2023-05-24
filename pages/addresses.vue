@@ -80,13 +80,13 @@ const { hasBilling, hasShipping } = checkout.checkAddressType();
 }
 
 .address__figcaption {
-  @apply mb-8 pb-3 text-xl font-semibold text-color-2 border-b-[1px] border-b-primary-alt;
+  @apply mb-8 pb-3 text-xl font-semibold text-color-1 border-b-[1px] border-b-primary-alt;
 }
 .address__text {
-  @apply mb-4 text-color-2 text-sm;
+  @apply mb-4 text-color-1 text-sm;
 }
 
 .address__link {
-  @apply text-base text-color-6 transition ease hover:(text-opacity-70);
+  @apply text-base text-color-3 underline transition ease hover:(text-opacity-70);
 }
 </style>

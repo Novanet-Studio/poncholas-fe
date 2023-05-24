@@ -50,6 +50,6 @@ const handleDescreaseQuantity = () => {
 }
 
 .quantity__input {
-  @apply h-9 w-6 text-center;
+  @apply h-9 w-6 text-center bg-transparent;
 }
 </style>

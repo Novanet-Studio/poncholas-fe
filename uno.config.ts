@@ -42,7 +42,7 @@ export default defineConfig({
     'border-color-7': 'border-[#c0c0c0]',
     btn: 'w-full text-center text-color-3 text-white py-4 inline-block text-sm border-transparent rounded-md bg-color-1 transition ease cursor-pointer hover:(bg-opacity-80) active:(bg-opacity-80)',
     'btn--outline':
-      'flex justify-center border !bg-transparent rounded-md border-color-2 text-color-2 hover:(!bg-color-2 !border-transparent !text-white)',
+      'flex justify-center border !bg-transparent rounded-md border-color-1 text-color-1 hover:(!bg-color-1 !border-transparent !text-white)',
     'header-actions': 'flex items-center justify-between',
     'header-actions__link': 'flex relative transition ease',
     'header-actions__icon': 'text-4xl text-[2.45rem] text-white',
@@ -66,7 +66,9 @@ export default defineConfig({
     'b-content': 'flex flex-col gap-8 lg:(flex-row mx-32)',
     'b-left': 'flex-[0_0_100%] md:flex-[0_0_65%]',
     'b-right': 'flex-[0_0_100%] md:flex-[0_0_35%]',
-    'b-subtitle': 'text-lg text-color-2 mt-0 mb-6 font-bold md:mb-3',
+    'b-subtitle': 'text-lg text-color-1 mt-0 mb-6 font-bold md:mb-3',
     'b-link-wrapper': 'flex justify-between items-center',
+
+    terms: 'text-color-1',
   },
 });

@@ -90,6 +90,11 @@
               </tr>
             </tbody>
           </table>
+          <div class="flex justify-center items-center" v-else>
+            <h4 class="text-2xl font-bold text-color-1">
+              No posees ninguna factura aun
+            </h4>
+          </div>
         </div>
       </div>
     </div>

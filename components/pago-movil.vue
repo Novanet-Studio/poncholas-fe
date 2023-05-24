@@ -91,7 +91,7 @@
       </div>
       <p>
         Al realizar esta compra usted acepta
-        <a href="#" class="text-color-2">nuestros términos y condiciones</a>.
+        <a href="#" class="terms">nuestros términos y condiciones</a>.
       </p>
       <div class="form__btn-group mt-4">
         <app-button

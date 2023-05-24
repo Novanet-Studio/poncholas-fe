@@ -42,7 +42,7 @@ const value = computed({
 
 <style scoped>
 .input {
-  @apply w-full border border-gray-300 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-color-2;
+  @apply w-full border border-gray-300 rounded-md p-4 focus:(outline-none ring-2 ring-color-1);
 }
 
 .input-error {

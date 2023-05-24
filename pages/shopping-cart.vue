@@ -152,7 +152,7 @@ onMounted(() => {
 }
 
 .shopping-cart__title {
-  @apply text-3xl font-semibold text-color-2 lg:text-5xl;
+  @apply text-3xl font-semibold text-color-1 lg:text-5xl;
 }
 
 .shopping-cart__link-wrapper {
@@ -192,7 +192,7 @@ onMounted(() => {
 }
 
 .shopping-cart__btn {
-  @apply !bg-transparent border border-color-2 mt-4 text-color-2 hover:(!bg-yellow-400 text-white);
+  @apply !bg-transparent border border-color-1 mt-4 text-color-1 hover:(!bg-yellow-400 text-white);
 }
 
 .cart-product__item {
@@ -204,7 +204,7 @@ onMounted(() => {
 }
 
 .cart-product__total {
-  @apply mb-0 text-2xl flex justify-between text-color-2;
+  @apply mb-0 text-2xl flex justify-between text-color-1;
 }
 
 .cart-product__amount {

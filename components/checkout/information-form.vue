@@ -194,10 +194,7 @@ const fillFormFromStrapiShippingData = async () => {
       type: AddressType.Shipping,
     };
 
-    const { data } = (await graphql<AddressResponse>(
-      GetAddressByIdAndType,
-      body
-    )) as any;
+    const { data } = (await graphql<any>(GetAddressByIdAndType, body)) as any;
 
     if (!data?.addresses?.data.length) return;
 
@@ -226,11 +223,11 @@ onMounted(() => {
 
 <style scoped>
 .title {
-  @apply font-semibold mb-3 text-color-2 text-2xl;
+  @apply font-semibold mb-3 text-color-1 text-2xl;
 }
 
 .form__title {
-  @apply font-semibold mb-8 text-color-2 text-2xl md:mb-3;
+  @apply font-semibold mb-8 text-color-1 text-2xl md:mb-3;
 }
 
 .form__group-alt {
