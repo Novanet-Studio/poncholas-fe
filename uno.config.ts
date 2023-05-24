@@ -28,6 +28,9 @@ export default defineConfig({
       xl: '1280px',
       '2xl': '1366px',
     },
+    fontFamily: {
+      sans: ['Work Sans', 'sans-serif'],
+    },
   },
   shortcuts: {
     'border-color-1': 'border-[#369997]',
