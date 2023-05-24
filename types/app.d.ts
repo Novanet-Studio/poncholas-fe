@@ -85,17 +85,17 @@ type CreateInvoice = DataWrapper<InvoicesData>;
 
 // API Data
 type CategoriesData = StrapiDataWrapper<CategoryAttributes>;
-type SubCategoriesData = StrapiDataWrapper<SubCategoryAttributes>;
+type SubCategoriesData = StrapiDataWrapper<CategoryAttributes>;
 type InvoicesData = StrapiDataWrapper<InvoiceAtributes>;
 type ProductsData = StrapiDataWrapper<ProductAttributes>;
 
 // Data attributes
 interface CategoryAttributes {
   name: string;
-  subcategories: SubCategories[];
+  categories: Categories[];
 }
 
-interface SubCategoryAttributes {
+interface CategoryAttributes {
   name: string;
   products: Products[];
 }
@@ -107,7 +107,7 @@ interface ProductAttributes {
   size: string;
   materials: string;
   price: number;
-  subcategory: SubCategoryAttributes;
+  subcategory: CategoryAttributes;
 }
 
 interface InvoiceAtributes {
@@ -127,7 +127,7 @@ interface InvoiceAtributes {
 interface CategoriesMapped {
   id: string;
   name: string;
-  subcategories: SubCategoriesMapped[];
+  categories: CategoriesMapped[];
 }
 
 interface SubCategoriesMapped {

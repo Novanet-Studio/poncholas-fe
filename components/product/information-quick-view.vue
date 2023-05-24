@@ -58,7 +58,7 @@ const { $store, $notify } = useNuxtApp();
 const router = useRouter();
 const props = defineProps<{ product: ProductsMapped }>();
 const cart = $store.cart();
-const { getCartProducts } = $store.product();
+// const { getCartProducts } = $store.product();
 
 const quantity = ref(1);
 
@@ -70,7 +70,7 @@ const goToCheckout = () => setTimeout(() => router.push('/checkout'), 500);
 
 const addItemToCart = async (payload: CartItem) => {
   cart.addProductToCart(payload);
-  await getCartProducts(cart.cartItems);
+  // await getCartProducts(cart.cartItems);
   $notify({
     group: 'all',
     title: 'Exito!',
