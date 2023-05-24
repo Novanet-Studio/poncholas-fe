@@ -43,6 +43,8 @@ type ProductRequest = DataWrapper<ProductRequestData>;
 type LoginRequest = DataWrapper<LoginRequestData>;
 type RegisterRequest = DataWrapper<RegisterRequestData>;
 type CreateInvoiceRequest = DataWrapper<CreateInvoiceRequestData>;
+type FabricsRequest = DataWrapper<FabricsRequestData>;
+type SizesRequest = DataWrapper<SizesRequestData>;
 
 // API Request Data
 interface CategoriesRequestData {
@@ -69,6 +71,14 @@ interface CreateInvoiceRequestData {
   createInvoice: CreateInvoice;
 }
 
+interface FabricsRequestData {
+  fabrics: Fabrics;
+}
+
+interface SizesRequestData {
+  sizes: Sizes;
+}
+
 // API Content
 interface UserData {
   jwt: string;
@@ -82,12 +92,16 @@ type Invoice = DataWrapper<InvoicesData>;
 type Products = DataWrapper<ProductsData[]>;
 type ProductsList = DataWrapper<ProductsData[]>;
 type CreateInvoice = DataWrapper<InvoicesData>;
+type Fabrics = DataWrapper<FabricsData[]>;
+type Sizes = DataWrapper<SizesData[]>;
 
 // API Data
 type CategoriesData = StrapiDataWrapper<CategoryAttributes>;
 type SubCategoriesData = StrapiDataWrapper<CategoryAttributes>;
 type InvoicesData = StrapiDataWrapper<InvoiceAtributes>;
 type ProductsData = StrapiDataWrapper<ProductAttributes>;
+type FabricsData = StrapiDataWrapper<FabricsAttributes>;
+type SizesData = StrapiDataWrapper<SizesAttributes>;
 
 // Data attributes
 interface CategoryAttributes {
@@ -123,6 +137,14 @@ interface InvoiceAtributes {
   updatedAt?: Date;
 }
 
+interface FabricsAttributes {
+  name: string;
+}
+
+interface SizesAttributes {
+  talla: string;
+}
+
 // Mappeds
 interface CategoriesMapped {
   id: string;
@@ -142,6 +164,16 @@ interface ProductsMapped extends ProductAttributes {
 
 interface InvoicesMapped extends InvoiceAtributes {
   id: string;
+}
+
+interface FabricsMapped extends FabricsAttributes {
+  id: string;
+  name: string;
+}
+
+interface SizesMapped extends SizesAttributes {
+  id: string;
+  talla: string;
 }
 
 // Others ...

@@ -2,11 +2,25 @@ import { defineStore } from 'pinia';
 import links from '~/data/account-links.json';
 type Currency = '$' | '€' | 'Bs';
 
+interface GlobalStore {
+  appDrawer: boolean;
+  currentDrawerContent: any;
+  currency: Currency;
+  fabrics: FabricsMapped[];
+  sizes: SizesMapped[];
+}
+
+const initialState: GlobalStore = {
+  appDrawer: false,
+  currentDrawerContent: null,
+  currency: '$',
+  fabrics: [],
+  sizes: [],
+};
+
 export const useGlobal = defineStore('global', {
-  state: () => ({
-    appDrawer: false,
-    currentDrawerContent: null,
-    currency: '$',
+  state: (): GlobalStore => ({
+    ...initialState,
   }),
   getters: {
     getLinks() {
@@ -55,13 +69,42 @@ export const useGlobal = defineStore('global', {
     },
     changeCurrency(currency: Currency) {
       this.currency = currency;
-      // const cookieParams = {
-      //   data: this.currency,
-      // };
-      // this.$cookies.set('currency', cookieParams, {
-      //     path: '/',
-      //     maxAge: 60 * 60 * 24 * 7
-      // });
+    },
+
+    async getSizes() {
+      const graphql = useStrapiGraphQL();
+      const response = await graphql<SizesRequest>(`
+        query Sizes {
+          sizes {
+            data {
+              id
+              attributes {
+                talla
+              }
+            }
+          }
+        }
+      `);
+
+      this.sizes = mapperData(response.data.sizes.data);
+    },
+
+    async getFabrics() {
+      const graphql = useStrapiGraphQL();
+      const response = await graphql<FabricsRequest>(`
+        query Fabrics {
+          fabrics {
+            data {
+              id
+              attributes {
+                name
+              }
+            }
+          }
+        }
+      `);
+
+      this.fabrics = mapperData(response.data.fabrics.data);
     },
   },
 });

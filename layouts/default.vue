@@ -21,6 +21,8 @@
 </template>
 
 <script lang="ts" setup>
+const { $store } = useNuxtApp();
+const global = $store.global();
 const route = useRoute();
 
 const maxWidth = computed(() => {
@@ -32,6 +34,11 @@ const maxWidth = computed(() => {
     maxWidth: includesPath ? '100%' : '1650px',
     paddingX: includesPath ? '0px' : '2rem',
   };
+});
+
+onMounted(() => {
+  global.getFabrics();
+  global.getSizes();
 });
 </script>
 
