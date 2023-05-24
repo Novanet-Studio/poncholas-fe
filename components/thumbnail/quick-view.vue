@@ -48,6 +48,6 @@ defineProps<{ product: ProductsMapped }>();
 }
 
 .thumbnail-quick-view__slide {
-  @apply flex justify-center items-center;
+  @apply flex justify-center items-center max-w-xl;
 }
 </style>

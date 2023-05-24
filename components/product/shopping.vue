@@ -34,7 +34,7 @@
       title="Add to wishlist"
       @click.prevent="handleAddItemToWishlist()"
     >
-      <ph-heart :size="24" class="text-color-2" />
+      <ph-heart :size="24" class="text-color-1" />
     </button>
   </div>
 </template>

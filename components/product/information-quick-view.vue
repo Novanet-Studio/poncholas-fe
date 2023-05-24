@@ -14,7 +14,6 @@
     <h4 class="info-quick-view__price">${{ product.price }}</h4>
 
     <product-detail-description :product="product" />
-    <div class="info-quick-view__divition"></div>
 
     <div class="info-quick-view__shopping">
       <figure class="info-quick-view__figure">
@@ -160,7 +159,7 @@ const handleBuyNow = (isBuyNow: boolean) => {
 }
 
 .info-quick-view__price {
-  @apply mb-5 text-xl text-color-2 font-semibold lg:text-2xl;
+  @apply mb-5 text-xl text-dark font-semibold lg:text-2xl;
 }
 
 .info-quick-view__divition {
@@ -192,10 +191,10 @@ const handleBuyNow = (isBuyNow: boolean) => {
 }
 
 .info-quick-view__btn {
-  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-color-2 mx-7 mb-4 border rounded-md transition ease md:w-full lg:(text-xs mb-0) hover:bg-yellow-500;
+  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-color-1 mx-7 mb-4 border rounded-md transition ease md:w-full lg:(text-xs mb-0) hover:bg-yellow-500;
 }
 
 .info-quick-view__btn-alt {
-  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease text-color-2 rounded-md bg-color-1 md:w-auto lg:(text-xs mr-7) hover:(text-white border-transparent bg-color-2);
+  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease text-color-1 rounded-md border border-color-1 md:w-auto lg:(text-xs mr-7) hover:(text-white border-transparent bg-color-1);
 }
 </style>

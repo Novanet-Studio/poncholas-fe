@@ -1,5 +1,5 @@
 <template>
-  <GDialog v-model="active" max-width="900">
+  <GDialog v-model="active" max-width="1100">
     <slot></slot>
   </GDialog>
 </template>
