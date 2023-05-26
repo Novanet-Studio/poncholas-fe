@@ -15,6 +15,9 @@
 
     <product-detail-description :product="product" />
 
+    <hr />
+    <app-custom-select v-model="size" :options="app.sizes" />
+
     <div class="info-quick-view__shopping">
       <figure class="info-quick-view__figure">
         <figcaption class="info-quick-view__figcaption">Cantidad</figcaption>
@@ -58,6 +61,8 @@ const { $store, $notify } = useNuxtApp();
 const router = useRouter();
 const props = defineProps<{ product: ProductsMapped }>();
 const cart = $store.cart();
+const app = $store.global();
+const size = ref('');
 // const { getCartProducts } = $store.product();
 
 const quantity = ref(1);
