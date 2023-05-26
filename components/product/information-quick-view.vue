@@ -15,8 +15,17 @@
 
     <product-detail-description :product="product" />
 
+    <div class="form__group">
+      <label class="form__label">Talla: </label>
+      <app-custom-select
+        v-model="size"
+        label="talla"
+        value-key="talla"
+        :options="realSize"
+      />
+    </div>
+
     <hr />
-    <app-custom-select v-model="size" :options="app.sizes" />
 
     <div class="info-quick-view__shopping">
       <figure class="info-quick-view__figure">
@@ -66,6 +75,29 @@ const size = ref('');
 // const { getCartProducts } = $store.product();
 
 const quantity = ref(1);
+
+const realSize = computed(() => {
+  const name = props.product.name.toLowerCase();
+
+  if (name === 'niños') {
+    const boysAllowedSizes = ['6', '7', '8', '9', '10'];
+    const sizes = app.sizes
+      .filter((item) => boysAllowedSizes.includes(item.talla))
+      .sort((a, b) => Number(a.talla) - Number(b.talla));
+
+    return sizes;
+  }
+
+  if (name.includes('adultos')) {
+    const allowedSizes = ['12', 'S', 'M', 'L'];
+
+    const sizes = app.sizes.filter((item) => allowedSizes.includes(item.text));
+
+    return sizes;
+  }
+
+  return app.sizes;
+});
 
 const handleIncreaseQuantity = () => (quantity.value += 1);
 const handleDescreaseQuantity = () =>
