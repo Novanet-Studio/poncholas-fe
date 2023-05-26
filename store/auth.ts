@@ -27,7 +27,7 @@ const initialState = {
   authenticated: false,
 };
 
-export const useAuth = defineStore('auth', {
+export const useAuth = defineStore('p-auth', {
   state: () => initialState as AuthState,
   actions: {
     async login(user: string, password: string): Promise<boolean> {
@@ -35,7 +35,7 @@ export const useAuth = defineStore('auth', {
       const { setToken } = useStrapiAuth();
       const graphql = useStrapiGraphQL();
 
-      const { data } = await graphql<LoginResponse>(loginQuery, {
+      const { data } = await graphql<LoginRequest>(loginQuery, {
         identifier: user,
         password,
       });

@@ -18,7 +18,7 @@ const initialState: GlobalStore = {
   sizes: [],
 };
 
-export const useGlobal = defineStore('global', {
+export const useGlobal = defineStore('p-global', {
   state: (): GlobalStore => ({
     ...initialState,
   }),

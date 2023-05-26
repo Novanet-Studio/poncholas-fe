@@ -29,7 +29,8 @@ const defaultValues = {
   loading: false,
 };
 
-export const useCart = defineStore('cart', {
+// p => Poncholas acronym
+export const useCart = defineStore('p-cart', {
   state: (): CartStore => ({
     ...defaultValues,
   }),

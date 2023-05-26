@@ -16,7 +16,7 @@ const defaultValues = {
   loading: false,
 };
 
-export const useWishList = defineStore('wishlist', {
+export const useWishList = defineStore('p-wishlist', {
   state: (): WishlistStore => ({
     ...defaultValues,
   }),

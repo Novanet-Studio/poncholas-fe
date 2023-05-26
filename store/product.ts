@@ -19,7 +19,7 @@ const defaultValues = {
   loading: false,
 };
 
-export const useProduct = defineStore('product', {
+export const useProduct = defineStore('p-product', {
   state: (): ProductStore => ({
     ...defaultValues,
   }),

@@ -43,7 +43,7 @@ const defaultState = {
   saveInformation: false,
 };
 
-export const useCheckout = defineStore('checkout', {
+export const useCheckout = defineStore('p-checkout', {
   state: (): CheckoutStore => ({
     ...defaultState,
   }),
