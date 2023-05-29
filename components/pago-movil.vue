@@ -350,7 +350,7 @@ async function sendInvoiceEmail(products: any[], payment: any) {
 
 const calculateAmountToPay = () => {
   const amount = bcvUsd.value * cart.amount;
-  amountRate.value = amount;
+  amountRate.value = parseFloat(amount.toFixed(2));
 };
 
 const getBCVUsd = async () => {
