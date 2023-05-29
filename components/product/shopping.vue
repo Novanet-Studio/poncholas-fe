@@ -1,41 +1,52 @@
 <template>
-  <div class="shopping">
-    <figure class="shopping__figure">
-      <figcaption class="shopping__figcaption">Cantidad</figcaption>
-      <div class="shopping__actions">
-        <button
-          class="shopping__actions-btn"
-          @click.prevent="handleIncreaseQuantity"
-        >
-          <ph-minus :size="12" class="text-gray-500" />
-        </button>
-        <input
-          v-model="quantity"
-          class="shopping__actions-input"
-          type="text"
-          disabled
-        />
-        <button
-          class="shopping__actions-btn"
-          @click.prevent="handleDescreaseQuantity"
-        >
-          <ph-plus :size="12" class="text-gray-500" />
-        </button>
-      </div>
-    </figure>
-    <button class="shopping__btn" @click.prevent="handleAddToCart(false)">
-      Agregar al carrito
-    </button>
-    <button class="shopping__btn-alt" @click.prevent="handleAddToCart(true)">
-      Comprar
-    </button>
-    <button
-      class="shopping__btn-alt !bg-transparent"
-      title="Add to wishlist"
-      @click.prevent="handleAddItemToWishlist()"
-    >
-      <ph-heart :size="24" class="text-color-1" />
-    </button>
+  <div>
+    <div class="form__group w-2/5">
+      <app-custom-select
+        v-model="size"
+        label="talla"
+        value-key="talla"
+        placeholder="Seleccione una talla"
+        :options="realSize"
+      />
+    </div>
+    <div class="shopping">
+      <figure class="shopping__figure">
+        <figcaption class="shopping__figcaption">Cantidad</figcaption>
+        <div class="shopping__actions">
+          <button
+            class="shopping__actions-btn"
+            @click.prevent="handleIncreaseQuantity"
+          >
+            <ph-minus :size="12" class="text-gray-500" />
+          </button>
+          <input
+            v-model="quantity"
+            class="shopping__actions-input"
+            type="text"
+            disabled
+          />
+          <button
+            class="shopping__actions-btn"
+            @click.prevent="handleDescreaseQuantity"
+          >
+            <ph-plus :size="12" class="text-gray-500" />
+          </button>
+        </div>
+      </figure>
+      <button class="shopping__btn" @click.prevent="handleAddToCart(false)">
+        Agregar al carrito
+      </button>
+      <button class="shopping__btn-alt" @click.prevent="handleAddToCart(true)">
+        Comprar
+      </button>
+      <button
+        class="shopping__btn-alt !bg-transparent"
+        title="Add to wishlist"
+        @click.prevent="handleAddItemToWishlist()"
+      >
+        <ph-heart :size="24" class="text-color-1" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -48,25 +59,45 @@ interface Props {
 
 const { $notify, $store } = useNuxtApp();
 const cart = $store.cart();
-const product = $store.product();
 const wishlist = $store.wishlist();
+const app = $store.global();
 const router = useRouter();
 const props = defineProps<Props>();
 const quantity = ref<number>(1);
+const size = ref('');
 
 const handleIncreaseQuantity = () => quantity.value++;
 const handleDescreaseQuantity = () =>
   quantity.value > 1 ? quantity.value-- : quantity;
+
+const realSize = computed(() => {
+  const name = props.product.name.toLowerCase();
+
+  if (name === 'niños') {
+    const boysAllowedSizes = ['6', '7', '8', '9', '10'];
+    const sizes = app.sizes
+      .filter((item) => boysAllowedSizes.includes(item.talla))
+      .sort((a, b) => Number(a.talla) - Number(b.talla));
+
+    return sizes;
+  }
+
+  if (name.includes('adultos')) {
+    const allowedSizes = ['12', 'S', 'M', 'L'];
+
+    const sizes = app.sizes.filter((item) => allowedSizes.includes(item.text));
+
+    return sizes;
+  }
+
+  return app.sizes;
+});
 
 // TODO: add typings
 const addItemToCart = async (payload: any) => {
   cart.addProductToCart(payload);
 
   if (!cart.cartItems.length) return;
-
-  const itemsId = cart.cartItems.map((item) => item.id);
-
-  await product.getCartProducts(itemsId);
 
   $notify({
     group: 'all',
@@ -75,27 +106,21 @@ const addItemToCart = async (payload: any) => {
   });
 };
 
-// const getCartProduct = async (products: any[]) => {
-//   const itemsId = products.map((item) => item.id);
-//   await product.getCartProducts(itemsId);
-// }
-
-// const loadCartProducts = async () => {
-//   if (!cart.cartItems.length) {
-//     product.cartProducts = null;
-//     return;
-//   }
-
-//   const itemsId = cart.cartItems.map((item) => item.id);
-//   await product.getCartProducts(itemsId);
-// }
-
 const goToCheckout = () => setTimeout(() => router.push('/checkout'), 500);
 
 const handleAddItemToWishlist = () => {
   const item = {
     id: props.product.id,
   };
+
+  if (!size.value.length) {
+    $notify({
+      group: 'all',
+      type: 'Error',
+      text: 'Debe selecionar una talla',
+    });
+    return;
+  }
 
   wishlist.addItemToWishlist(item);
 
@@ -113,6 +138,15 @@ const handleAddToCart = (isBuyNow = false) => {
     quantity: quantity.value,
     price: props.product.price,
   };
+
+  if (!size.value.length) {
+    $notify({
+      group: 'all',
+      type: 'Error',
+      text: 'Debe selecionar una talla',
+    });
+    return;
+  }
 
   if (!existItem) {
     addItemToCart(item);

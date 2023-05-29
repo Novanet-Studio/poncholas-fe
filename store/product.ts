@@ -3,7 +3,7 @@ import { getProductsByCategoryId } from '~/graphql';
 
 interface ProductStore {
   product: unknown | null;
-  products: Product[] | null;
+  products: ProductsMapped[] | null;
   cartProducts: ProductsMapped[] | null;
   wishlistItems: ProductsMapped[] | null;
   categories: unknown | null;
@@ -30,7 +30,7 @@ export const useProduct = defineStore('p-product', {
       try {
         this.loading = true;
         const gql = useStrapiGraphQL();
-        const { data } = await gql<ProductsResponse>(getProductsByCategoryId, {
+        const { data } = await gql<ProductRequest>(getProductsByCategoryId, {
           id: categoryId,
         });
         const mapped = mapperData<ProductsMapped[]>(data.products.data);
