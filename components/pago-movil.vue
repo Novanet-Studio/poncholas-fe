@@ -118,6 +118,8 @@ const cart = $store.cart();
 const auth = $store.auth();
 const checkout = $store.checkout();
 const product = $store.product();
+const app = $store.global();
+
 const bcvUsd = ref<number>(0);
 const amountRate = ref<number>(0);
 const loadingBcvUsd = ref<boolean>(false);
@@ -165,63 +167,6 @@ const {
   defaultMessage: '',
 });
 
-async function createInvoice(payment: any, products: any[]) {
-  const productName = productsCart.value;
-  const filterProducts: any[] = [];
-
-  products.forEach((product) => {
-    const found = productName.find((item) => item.id === product.id);
-
-    if (found) {
-      filterProducts.push({
-        id_product: +product.id,
-        quantity: Number(product.quantity),
-        name_product: found.name,
-      });
-    }
-  });
-
-  const addressData = {
-    phone: checkout.phone,
-    home: checkout.home,
-    country: checkout.country,
-    locality: checkout.city,
-    postalCode: checkout.zipCode,
-    addressLine1: checkout.address,
-  };
-
-  const paymentInfo = {
-    ...payment,
-    confirmacion: payment.confirmacion,
-    email: checkout.email,
-  };
-
-  delete paymentInfo.orderId;
-
-  const data = {
-    // Amount in USD
-    amount: cart.amount,
-    order_id: payment.orderId,
-    paid: false,
-    payment_id: payment.confirmacion,
-    products: filterProducts,
-    user_id: +auth.user.id,
-    shippingAddress: addressData,
-    fullName: checkout.fullName,
-    cardType: 'no aplica',
-    cardKind: 'no aplica',
-    cardLast: 'no aplica',
-    payment_info: [paymentInfo],
-    payment_method: 'pago_movil',
-  };
-
-  const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
-    invoice: data,
-  });
-
-  return result;
-}
-
 const { submit } = submitter(async () => {
   if (!verify()) return;
 
@@ -257,11 +202,70 @@ const { submit } = submitter(async () => {
 
     sendInvoiceEmail(invoiceItems, paymentData);
   } catch (error) {
+    console.log(error);
     console.log('Was an error while sending payment report');
   } finally {
     sending.value = false;
   }
 });
+
+async function createInvoice(payment: any, products: any[]) {
+  const productName = productsCart.value;
+  const filterProducts: any[] = [];
+
+  products.forEach((product) => {
+    const found = productName.find((item) => item.id === product.id);
+
+    if (found) {
+      filterProducts.push({
+        product: +product.id,
+        quantity: Number(product.quantity),
+        fabric: null,
+        size: app.sizes.find((item) => item.id === product.size)?.id ?? null,
+      });
+    }
+  });
+
+  const addressData = {
+    phone: checkout.phone,
+    home: checkout.home,
+    country: checkout.country,
+    locality: checkout.city,
+    postalCode: checkout.zipCode,
+    addressLine1: checkout.address,
+  };
+
+  const paymentInfo = {
+    ...payment,
+    confirmacion: payment.confirmacion,
+    email: checkout.email,
+  };
+
+  delete paymentInfo.orderId;
+
+  const data = {
+    // Amount in USD
+    amount: cart.amount,
+    order_id: payment.orderId,
+    paid: false,
+    payment_id: payment.confirmacion,
+    products: filterProducts,
+    user_id: +auth.user.id,
+    shippingAddress: addressData,
+    fullName: checkout.fullName,
+    // cardType: 'no aplica',
+    // cardKind: 'no aplica',
+    // cardLast: 'no aplica',
+    payment_info: [paymentInfo],
+    payment_method: 'pago_movil',
+  };
+
+  const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
+    invoice: data,
+  });
+
+  return result;
+}
 
 async function sendInvoiceEmail(products: any[], payment: any) {
   try {
@@ -290,6 +294,7 @@ async function sendInvoiceEmail(products: any[], payment: any) {
           description: productFinded.description,
         });
 
+        // TODO add fabric and size
         emailContent += emailTemplate({
           name: productFinded.name,
           price: item.price,

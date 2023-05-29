@@ -66,10 +66,14 @@
 
 <script lang="ts" setup>
 import { PhPlus, PhMinus } from '@phosphor-icons/vue';
+import { getProductById as GetProductById } from '~/graphql';
+
 const { $store, $notify } = useNuxtApp();
+const graphql = useStrapiGraphQL();
 const router = useRouter();
 const props = defineProps<{ product: ProductsMapped }>();
 const cart = $store.cart();
+const productStore = $store.product();
 const app = $store.global();
 const size = ref('');
 // const { getCartProducts } = $store.product();
@@ -115,16 +119,31 @@ const addItemToCart = async (payload: CartItem) => {
   });
 };
 
-const handleAddToCart = () => {
+const handleAddToCart = async () => {
   const productItem = {
     id: props.product.id,
-    quantity,
+    quantity: quantity.value,
     price: props.product.price,
     size: size.value,
   };
 
   // @ts-ignore
   cart.addProductToCart(productItem);
+
+  const itemsList = cart.cartItems.map((item) =>
+    graphql<ProductRequest>(GetProductById, { id: item.id })
+  );
+
+  const itemsResult = await Promise.all(itemsList);
+
+  const temp: any[] = [];
+
+  mapperData<any[]>(itemsResult).forEach((item) => {
+    temp.push(item.products[0]);
+  });
+
+  productStore.addCartProducts(temp);
+
   $notify({
     group: 'all',
     title: '¡Éxito!',
