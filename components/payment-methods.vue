@@ -1,9 +1,9 @@
 <template>
   <div class="whitespace-nowrap md:w-full">
     <Tabs :options="{ useUrlFragmet: false }">
-      <tab name="Square up">
+      <!-- <tab name="Square up">
         <visa-method />
-      </tab>
+      </tab> -->
       <tab name="Paypal">
         <paypal-method />
       </tab>

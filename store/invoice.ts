@@ -111,7 +111,7 @@ export const useInvoice = defineStore('p-invoice', {
         apellido: order.payer.name?.surname,
         email: order.payer.email_address,
         confirmacion: order.id,
-        monto: order.purchase_units[0].amount.value,
+        monto: +order.purchase_units[0].amount.value,
         fecha_pago: order.create_time,
       };
 
@@ -124,9 +124,9 @@ export const useInvoice = defineStore('p-invoice', {
         user_id: +auth.user.id,
         shippingAddress: address,
         fullName: checkout.fullName,
-        cardType: 'no aplica',
-        cardKind: 'no aplica',
-        cardLast: 'no aplica',
+        // cardType: 'no aplica',
+        // cardKind: 'no aplica',
+        // cardLast: 'no aplica',
         payment_info: [paymentInfo],
         payment_method: 'paypal',
       };
