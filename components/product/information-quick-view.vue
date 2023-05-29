@@ -91,7 +91,7 @@ const realSize = computed(() => {
   if (name.includes('adultos')) {
     const allowedSizes = ['12', 'S', 'M', 'L'];
 
-    const sizes = app.sizes.filter((item) => allowedSizes.includes(item.text));
+    const sizes = app.sizes.filter((item) => allowedSizes.includes(item.talla));
 
     return sizes;
   }
@@ -120,6 +120,7 @@ const handleAddToCart = () => {
     id: props.product.id,
     quantity,
     price: props.product.price,
+    size: size.value,
   };
 
   // @ts-ignore

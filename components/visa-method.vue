@@ -55,6 +55,7 @@ const auth = $store.auth();
 const cart = $store.cart();
 const product = $store.product();
 const checkout = $store.checkout();
+const app = $store.global();
 const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const state = reactive<State & Record<any, any>>({
@@ -107,6 +108,58 @@ const checkBilling = async (): Promise<CheckBillingResponse> => {
   }
 };
 
+const createInvoice = async (payment: any, products: any[]) => {
+  const productName = state.productsCart;
+  const filterProducts: any[] = [];
+
+  products.forEach((product) => {
+    const find = productName.find((item) => item.id === product.id);
+
+    if (find) {
+      filterProducts.push({
+        id_product: +product.id,
+        quantity: Number(product.quantity),
+        name_product: find.name,
+        size: app.sizes.find((size) => size.talla === product.size)?.id ?? 0,
+      });
+    }
+  });
+
+  payment.shippingAddress.phone = checkout.phone;
+  payment.shippingAddress.home = checkout.home;
+
+  const paymentInfo = {
+    nombre: checkout.name,
+    apellido: checkout.lastName,
+    email: payment.buyerEmailAddress,
+    confirmacion: payment.id,
+    monto: payment.totalMoney.amount / 100,
+    fecha_pago: new Date(),
+  };
+
+  const body = {
+    amount: payment.totalMoney.amount / 100,
+    order_id: payment.orderId,
+    paid: true,
+    payment_id: payment.id,
+    products: filterProducts,
+    user_id: +auth.user.id,
+    shippingAddress: payment.shippingAddress,
+    fullName: payment.note,
+    cardType: payment.cardDetails.card.cardBrand,
+    cardKind: payment.cardDetails.card.cardType,
+    cardLast: payment.cardDetails.card.last4,
+    payment_info: [paymentInfo],
+    payment_method: 'squareup',
+  };
+
+  const data = await graphql<CreateInvoiceRequest>(CreateInvoice, {
+    invoice: body,
+  });
+
+  return data;
+};
+
 const sendInvoiceEmail = async (products: any[], payment: any) => {
   try {
     let emailContent = '';
@@ -132,6 +185,7 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
           name: productFinded.name,
           amount: item.price,
           description: productFinded.description,
+          size: productFinded.size,
         });
 
         emailContent += emailTemplate({
@@ -198,57 +252,6 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
       text: '¡Hubo un error al enviar el email!',
     });
   }
-};
-
-const createInvoice = async (payment: any, products: any[]) => {
-  const productName = state.productsCart;
-  const filterProducts: any[] = [];
-
-  products.forEach((product) => {
-    const find = productName.find((item) => item.id === product.id);
-
-    if (find) {
-      filterProducts.push({
-        id_product: +product.id,
-        quantity: Number(product.quantity),
-        name_product: find.name,
-      });
-    }
-  });
-
-  payment.shippingAddress.phone = checkout.phone;
-  payment.shippingAddress.home = checkout.home;
-
-  const paymentInfo = {
-    nombre: checkout.name,
-    apellido: checkout.lastName,
-    email: payment.buyerEmailAddress,
-    confirmacion: payment.id,
-    monto: payment.totalMoney.amount / 100,
-    fecha_pago: new Date(),
-  };
-
-  const body = {
-    amount: payment.totalMoney.amount / 100,
-    order_id: payment.orderId,
-    paid: true,
-    payment_id: payment.id,
-    products: filterProducts,
-    user_id: +auth.user.id,
-    shippingAddress: payment.shippingAddress,
-    fullName: payment.note,
-    cardType: payment.cardDetails.card.cardBrand,
-    cardKind: payment.cardDetails.card.cardType,
-    cardLast: payment.cardDetails.card.last4,
-    payment_info: [paymentInfo],
-    payment_method: 'squareup',
-  };
-
-  const data = await graphql<CreateInvoiceRequest>(CreateInvoice, {
-    invoice: body,
-  });
-
-  return data;
 };
 
 const createPayment = async (paymentBody: any) => {
