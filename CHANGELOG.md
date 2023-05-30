@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.0.0 (2023-05-30)
+
+
+### Features
+
+* add size select inside of quickview ([28ec34c](https://github.com/Novanet-Studio/poncholas-fe/commit/28ec34c5020152ff1d6d7d4300d0ca5477a3db3c))
+* fetch sizes and fabrics ([11b3ab1](https://github.com/Novanet-Studio/poncholas-fe/commit/11b3ab15c688401d409afa4e07d7736dc0c77d47))
+* **firebase:** add new functions ([9069a5f](https://github.com/Novanet-Studio/poncholas-fe/commit/9069a5f57ef380d93486e22142e9279b6b22ee73))
+* migrate to v2 ([e7f4d1e](https://github.com/Novanet-Studio/poncholas-fe/commit/e7f4d1e878bdf5bb60f0e9290e68917113c209c0))
+
+
+### Bug Fixes
+
+* **invoice-detail:** no check for products length ([4610b52](https://github.com/Novanet-Studio/poncholas-fe/commit/4610b52afd0f39b548ea780e6eec126f98b28957))
+* no fields in get-invoices-by-user-id query ([48410a9](https://github.com/Novanet-Studio/poncholas-fe/commit/48410a9773a8ed53796488efc84ee3a780258e2a))
+* no set cartProducts correctly ([0028022](https://github.com/Novanet-Studio/poncholas-fe/commit/0028022ba7504ddca0681ae5d787d322ff01d44a))
+* pago-movil amountRate ([e06be40](https://github.com/Novanet-Studio/poncholas-fe/commit/e06be40a8aa98ccbc9d97ad4c85bf32ead9eaaea))
+
 ## [2.11.0](https://github.com/Novanet-Studio/fast-ecommerce-fe/compare/v2.10.0...v2.11.0) (2023-04-20)
 
 
