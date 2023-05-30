@@ -11,17 +11,20 @@ query GetInvoicesByUserId($id: Int!, $page: Int, $pageSize: Int) {
         products {
           id
           quantity
-          id_product
-          name_product
+          product {
+            data {
+              id
+              attributes {
+                name
+              }
+            }
+          }
         }
         payment_id
         order_id
         user_id
         shippingAddress
         fullName
-        cardType
-        cardKind
-        cardLast
         createdAt
         payment_method
         payment_info {

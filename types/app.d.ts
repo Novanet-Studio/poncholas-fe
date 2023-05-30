@@ -127,7 +127,7 @@ interface ProductAttributes {
 interface InvoiceAtributes {
   paid: boolean;
   amount: number;
-  products: ProductBuyed[];
+  products: ProductsMapped[];
   payment_id: string;
   order_id: string;
   shipment_address: AddressDetail;

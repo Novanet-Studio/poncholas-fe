@@ -39,7 +39,7 @@ export const useWishList = defineStore('p-wishlist', {
         this.total = this.total + 1;
       }
     },
-    removeItemFromWishlist(item: Product) {
+    removeItemFromWishlist(item: ProductsMapped) {
       const index = this.items!.findIndex((product) => product.id === item.id);
       this.total = this.total - 1;
       this.items?.splice(index, 1);
