@@ -120,7 +120,7 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody v-if="invoiceStore.products?.length">
                       <tr
                         class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
                         v-for="(product, index) in invoiceStore.products"
@@ -163,6 +163,15 @@
                         </td>
                       </tr>
                     </tbody>
+                    <tbody v-else>
+                      <td>
+                        <p
+                          class="text-xs text-gray-900 font-bold px-6 py-4 whitespace-nowrap"
+                        >
+                          No hay productos disponibles
+                        </p>
+                      </td>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -202,7 +211,7 @@ const { $store } = useNuxtApp();
 const invoiceStore = $store.invoice();
 const pdfSection = ref<HTMLElement | undefined>(undefined);
 
-onMounted(() => {
-  invoiceStore.loadInvoiceProducts();
+onMounted(async () => {
+  await invoiceStore.loadInvoiceProducts();
 });
 </script>

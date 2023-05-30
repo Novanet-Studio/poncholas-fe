@@ -211,8 +211,14 @@ const { data, total, page, perPage, changePage } =
     perPage: 3,
   });
 
-const goToInvoice = (invoiceId: string, invoiceItem: any) => {
-  invoice.invoice = invoiceItem;
+const goToInvoice = (invoiceId: string, invoiceItem: InvoiceTableDetail) => {
+  const found = invoice.invoices?.find((inv) => inv.id === invoiceItem.id);
+
+  invoice.invoice = {
+    ...found,
+    ...invoiceItem,
+  };
+
   router.push(`/invoices/${invoiceId}`);
 };
 

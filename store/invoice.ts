@@ -73,8 +73,6 @@ export const useInvoice = defineStore('p-invoice', {
         pageSize: options?.pageSize ?? PAGE_LIMIT,
       });
 
-      console.log('from fetchInvoices: ', response.data.invoices.data);
-
       if (!response.data.invoices?.data?.length) {
         return {
           data: [],
@@ -85,6 +83,14 @@ export const useInvoice = defineStore('p-invoice', {
       const mapped = mapperData<InvoicesMapped[]>(response.data.invoices.data);
 
       this.invoices = mapped;
+
+      const group = mapped
+        .flatMap((item) => (item.products?.length ? item.products : null))
+        .filter(Boolean);
+
+      const products = group.flatMap((item) => item?.product);
+
+      this.products = products as ProductsMapped[];
 
       return {
         data: mapped,
@@ -145,9 +151,7 @@ export const useInvoice = defineStore('p-invoice', {
 
         if (!this.invoice?.products.length) return [];
 
-        const itemsId = this.invoice.products.map(
-          (product) => product.id_product
-        );
+        const itemsId = this.invoice.products.map((product) => product.id);
         const productPromises = itemsId.map((id) =>
           graphql<ProductRequest>(GetProductById, { id })
         );
